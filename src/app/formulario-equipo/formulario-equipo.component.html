@@ -1,0 +1,60 @@
+<div class="container mt-5">
+    <h2>Registro de Equipo</h2>
+  
+    <h3>Información del usuario que entrega</h3>
+    <div class="mb-3">
+      <label for="nombreEntrega" class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="nombreEntrega" name="nombreEntrega" required>
+    </div>
+    <div class="mb-3">
+      <label for="unidadEntrega" class="form-label">Unidad:</label>
+      <input type="text" class="form-control" id="unidadEntrega" name="unidadEntrega" required>
+    </div>
+  
+    <h3>Detalles del Equipo que se recepciona</h3>
+    <div class="mb-3">
+      <label for="serie" class="form-label">Serie:</label>
+      <input type="text" class="form-control" id="serie" name="serie" required>
+    </div>
+    <div class="mb-3">
+      <label for="descripcionBateria" class="form-label">Descripción batería:</label>
+      <textarea class="form-control" id="descripcionBateria" name="descripcionBateria" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="fechaMinistracion" class="form-label">Fecha de ministración:</label>
+      <input type="date" class="form-control" id="fechaMinistracion" name="fechaMinistracion">
+    </div>
+  
+    <h3>Datos del usuario que recibe</h3>
+    <div class="mb-3">
+      <label for="nombreRecibe" class="form-label">Nombre:</label>
+      <input type="text" class="form-control" id="nombreRecibe" name="nombreRecibe" required>
+    </div>
+    <div class="mb-3">
+      <label for="fechaRecepcion" class="form-label">Fecha de recepción:</label>
+      <input type="date" class="form-control" id="fechaRecepcion" name="fechaRecepcion">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Prioridad:</label>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="ordinario">
+        <label class="form-check-label" for="ordinario">
+          Ordinario
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="urgente">
+        <label class="form-check-label" for="urgente">
+          Urgente
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="extraurgente">
+        <label class="form-check-label" for="extraurgente">
+          Extraurgente
+        </label>
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </div>

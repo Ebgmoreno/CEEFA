@@ -55,7 +55,28 @@ export class FormularioEquipoComponent {
     this.router.navigate(['/']); 
   }
 
-  // ... (resto del código)
+  onSubmit() {
+    // 1. Obtén los datos del formulario
+    const datosFormulario = {
+      nombreEntrega: this.nombreEntrega,
+      unidadEntrega: this.unidadEntrega,
+      serie: this.serie,
+      descripcion: this.descripcion,
+      fechaMinistracion: this.fechaMinistracion,
+      nombreRecibe: this.nombreRecibe,
+      fechaRecepcion: this.fechaRecepcion,
+      // ... (obtén los valores de los demás campos, incluyendo la prioridad)
+    };
+  
+    // 2. Guarda los datos en localStorage
+    localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario));
+  
+    // 3. (Opcional) Limpia el formulario
+    this.limpiarFormulario();
+  
+    // 4. (Opcional) Muestra un mensaje de éxito
+    // ...
+  }
 }
 
 

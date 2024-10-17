@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { RouterOutlet } from '@angular/router';
 import { FormularioEquipoComponent } from './formulario-equipo/formulario-equipo.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

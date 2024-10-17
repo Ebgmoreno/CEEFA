@@ -1,1 +1,33 @@
-<p>equipos-registrados works!</p>
+<div class="container mt-5">
+    <h2>Equipos Registrados</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Unidad</th>
+          <th>Serie</th>
+          <th>Descripción</th>
+          <th>Fecha de Ministración</th>
+          <th>Nombre (Recepción)</th>
+          <th>Fecha de Recepción</th>
+          <th>Prioridad</th>
+          <th>Detalles</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipo of equipos"> 
+          <td>{{ equipo.nombreEntrega }}</td>
+          <td>{{ equipo.unidadEntrega }}</td>
+          <td>{{ equipo.serie }}</td>
+          <td>{{ equipo.descripcion }}</td>
+          <td>{{ equipo.fechaMinistracion }}</td>
+          <td>{{ equipo.nombreRecibe }}</td>
+          <td>{{ equipo.fechaRecepcion }}</td>
+          <td>{{ equipo.prioridad }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" (click)="verDetalles(equipo)">Ver</button> 
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

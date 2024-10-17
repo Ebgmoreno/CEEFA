@@ -3,12 +3,12 @@ import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
 import { HomeComponent } from './app/home/home.component';
 import { FormularioEquipoComponent } from './app/formulario-equipo/formulario-equipo.component';
-import { LoginComponent } from './app/usuarios/login/login.component'; // Asegúrate de importar LoginComponent
+import { LoginComponent } from './app/usuarios/login/login.component';
 
 const routes = [
   { path: 'home', component: HomeComponent },
   { path: 'formulario', component: FormularioEquipoComponent },
-  { path: '', component: LoginComponent } // Ruta para el login
+  { path: '', component: LoginComponent } 
 ];
 
 bootstrapApplication(AppComponent, {

@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-equipo',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './formulario-equipo.component.html',
-  styleUrl: './formulario-equipo.component.css'
+  styleUrls: ['./formulario-equipo.component.css']
 })
-export class FormularioEquipoComponent {
+export class FormularioEquipoComponent {}
 
-}
+

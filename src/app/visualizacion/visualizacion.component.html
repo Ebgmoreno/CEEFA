@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <h2>Datos del Formulario</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre de Entrega</th>
+          <th>Unidad de Entrega</th>
+          <th>Serie</th>
+          <th>Descripción</th>
+          <th>Fecha de Ministración</th>
+          <th>Nombre de Recibe</th>
+          <th>Fecha de Recepción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipo of equipos">
+          <td>{{ equipo.nombreEntrega }}</td>
+          <td>{{ equipo.unidadEntrega }}</td>
+          <td>{{ equipo.serie }}</td>
+          <td>{{ equipo.descripcion }}</td>
+          <td>{{ equipo.fechaMinistracion }}</td>
+          <td>{{ equipo.nombreRecibe }}</td>
+          <td>{{ equipo.fechaRecepcion }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

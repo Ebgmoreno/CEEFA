@@ -5,21 +5,31 @@
       aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarColor01">
 
-<ul class="nav nav-pills"> 
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-      aria-expanded="false">Menú</a>
-    <div class="dropdown-menu">
-      <button class="dropdown-item" (click)="limpiarFormulario()">Limpiar Formulario</button> 
-      <button class="dropdown-item" (click)="cambiarTema()">Cambiar tema</button>
-      <div class="dropdown-divider"></div>
-      <button class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</button> 
+      <ul class="navbar-nav me-auto"> 
+        <li class="nav-item">
+                    <a class="nav-link" routerLink="/visualizacion">Visualización</a>
+        </li>
 
-    </div>
-  </li>
-</ul>
+        <li class="nav-item">
+          <a class="nav-link" (click)="limpiarFormulario()">Limpiar Formulario</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/prueba">Prueba</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="cerrarSesion()">Cerrar Sesión</a>
+        </li>
+      </ul>
+
+    
+
+      <button class="btn btn-secondary my-2 my-sm-0" type="button" (click)="cambiarTema()">Cambiar Tema</button>
+
     </div>
   </div>
 </nav>
@@ -89,3 +99,4 @@
     </form>
   </div>  
 </div>
+

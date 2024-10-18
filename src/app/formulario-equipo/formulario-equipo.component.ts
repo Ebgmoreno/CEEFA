@@ -1,7 +1,8 @@
+import { Router } from '@angular/router';
 import { Component, ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-formulario-equipo',
@@ -23,7 +24,30 @@ export class FormularioEquipoComponent {
 
 
 
-  constructor(private cdRef: ChangeDetectorRef, private router: Router, private renderer: Renderer2) {}
+  constructor(private router: Router, private cdRef: ChangeDetectorRef, private renderer: Renderer2) {}
+
+  onSubmit() {
+    // 1. Obtén los datos del formulario
+    const datosFormulario = {
+      nombreEntrega: this.nombreEntrega,
+      unidadEntrega: this.unidadEntrega,
+      serie: this.serie,
+      descripcion: this.descripcion,
+      fechaMinistracion: this.fechaMinistracion,
+      nombreRecibe: this.nombreRecibe,
+      fechaRecepcion: this.fechaRecepcion,
+      // ... (obtén los valores de los demás campos, incluyendo la prioridad)
+    };
+  
+    // 2. Guarda los datos en localStorage
+    localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario));
+  
+    // 3. (Opcional) Limpia el formulario
+    this.limpiarFormulario();
+  
+    // 4. (Opcional) Muestra un mensaje de éxito
+    // ...
+  }
 
   cambiarTema() {
     this.temaOscuro = !this.temaOscuro; 
@@ -55,28 +79,7 @@ export class FormularioEquipoComponent {
     this.router.navigate(['/']); 
   }
 
-  onSubmit() {
-    // 1. Obtén los datos del formulario
-    const datosFormulario = {
-      nombreEntrega: this.nombreEntrega,
-      unidadEntrega: this.unidadEntrega,
-      serie: this.serie,
-      descripcion: this.descripcion,
-      fechaMinistracion: this.fechaMinistracion,
-      nombreRecibe: this.nombreRecibe,
-      fechaRecepcion: this.fechaRecepcion,
-      // ... (obtén los valores de los demás campos, incluyendo la prioridad)
-    };
-  
-    // 2. Guarda los datos en localStorage
-    localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario));
-  
-    // 3. (Opcional) Limpia el formulario
-    this.limpiarFormulario();
-  
-    // 4. (Opcional) Muestra un mensaje de éxito
-    // ...
-  }
+
 }
 
 

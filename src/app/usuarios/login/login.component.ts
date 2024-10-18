@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -17,8 +17,10 @@ export class LoginComponent {
   errorCredenciales: string = '';
   usuario: string = ''; // <-- Añade esta línea
   contrasena: string = ''; // <-- Añade esta línea
+  temaOscuro: boolean = true; // Para controlar el tema
 
-  constructor(private router: Router) { } // Inyectamos el Router
+
+  constructor(private router: Router, private renderer: Renderer2) { } // Inyecta Renderer2
 
   onSubmit(form: any) {
     console.log(form.value);
@@ -49,6 +51,16 @@ export class LoginComponent {
     } else {
       this.errorCredenciales = 'Usuario o contraseña incorrectos';
       this.mostrarError = true;
+    }
+  }
+
+  cambiarTema() {
+    this.temaOscuro = !this.temaOscuro; 
+
+    if (this.temaOscuro) {
+      this.renderer.addClass(document.body, 'dark-mode'); 
+    } else {
+      this.renderer.removeClass(document.body, 'dark-mode');
     }
   }
 }

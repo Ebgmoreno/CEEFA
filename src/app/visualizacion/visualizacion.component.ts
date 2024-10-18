@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 interface Equipo {
   nombreEntrega: string;
@@ -19,15 +19,23 @@ interface Equipo {
   styleUrls: ['./visualizacion.component.css']
 })
 export class VisualizacionComponent implements OnInit {
-  equipos: Equipo[] = [];
+  equipo: Equipo = { // Inicializamos con un objeto vacío
+    nombreEntrega: '',
+    unidadEntrega: '',
+    serie: '',
+    descripcion: '',
+    fechaMinistracion: '',
+    nombreRecibe: '',
+    fechaRecepcion: ''
+  };
 
   ngOnInit() {
     const datosGuardados = localStorage.getItem('datosFormulario');
-
+  
     if (datosGuardados) {
       try {
-        const datosEquipos: Equipo[] = JSON.parse(datosGuardados);
-        this.equipos = datosEquipos;
+        const datosEquipo: Equipo = JSON.parse(datosGuardados); // Cambiamos de Equipo[] a Equipo
+        this.equipo = datosEquipo; // Asignamos el objeto a this.equipo
       } catch (error) {
         console.error("Error al analizar los datos de localStorage:", error);
       }

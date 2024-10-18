@@ -22,9 +22,15 @@ export class FormularioEquipoComponent {
   fechaRecepcion: string = '';
   temaOscuro: boolean = false; // Variable para controlar el tema
 
+  constructor(
+    private cdRef: ChangeDetectorRef, 
+    private router: Router, 
+    private renderer: Renderer2
+  ) {}
 
-
-  constructor(private router: Router, private cdRef: ChangeDetectorRef, private renderer: Renderer2) {}
+  navegarAVisualizacion() {
+    this.router.navigate(['/visualizacion']);
+  }
 
   onSubmit() {
     // 1. Obtén los datos del formulario

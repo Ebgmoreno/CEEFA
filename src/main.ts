@@ -5,7 +5,7 @@ import { HomeComponent } from './app/home/home.component';
 import { FormularioEquipoComponent } from './app/formulario-equipo/formulario-equipo.component';
 import { LoginComponent } from './app/usuarios/login/login.component';
 import { VisualizacionComponent } from './app/visualizacion/visualizacion.component';
-import { PruebaRutaComponent } from './app/prueba-ruta/prueba-ruta.component'; 
+
 
 
 
@@ -15,8 +15,6 @@ const routes: Routes = [
   { path: 'formulario', component: FormularioEquipoComponent },
   { path: '', component: LoginComponent },
   { path: 'visualizacion', component: VisualizacionComponent },
-  { path: 'prueba', component: PruebaRutaComponent } 
-
 ];
 
 bootstrapApplication(AppComponent, {

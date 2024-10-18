@@ -74,8 +74,16 @@ export class FormularioEquipoComponent {
     // 3. (Opcional) Limpia el formulario
     this.limpiarFormulario();
   
+   
     // 4. (Opcional) Muestra un mensaje de éxito
     // ...
+  }
+
+  
+
+
+  test() {
+    console.log("Se hizo clic en el botón Equipos Registrados");
   }
 }
 

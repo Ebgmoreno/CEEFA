@@ -13,7 +13,9 @@
       aria-expanded="false">Menú</a>
     <div class="dropdown-menu">
       <button class="dropdown-item" (click)="limpiarFormulario()">Limpiar Formulario</button> 
-      <button class="dropdown-item" routerLink="/equipos-registrados">Equipos Registrados</button>
+
+      <button class="dropdown-item" routerLink="/equipos-registrados" (click)="test()">Equipos Registrados</button>
+
       <button class="dropdown-item" (click)="cambiarTema()">Cambiar tema</button>
       <div class="dropdown-divider"></div>
       <button class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</button> 
@@ -81,9 +83,7 @@
         </label>
       </div>
     </label>
-
-    
-    
+       
     <form #formulario="ngForm"> 
 
       <button type="button" class="btn btn-warning" (click)="onSubmit()">Enviar</button>

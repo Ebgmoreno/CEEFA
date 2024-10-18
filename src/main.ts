@@ -9,7 +9,7 @@ import { EquiposRegistradosComponent } from './app/equipos-registrados/equipos-r
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'formulario', component: FormularioEquipoComponent },
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'equipos-registrados', component: EquiposRegistradosComponent } 
 
 ];

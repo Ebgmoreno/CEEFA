@@ -30,9 +30,9 @@
 </nav>
 
 <div class="container mt-5">
-  <h3> <p class="text-success">Información del usuario que entrega</p> </h3>
+  <h3> <p class="text-info">Información del usuario que entrega</p> </h3>
   <div class="mb-3">
-    <label for="nombreEntrega" class="form-label">Nombre:</label>
+    <label for="nombreEntrega" class="form-label">Nombre</label>
     <input type="text" class="form-control" id="nombreEntrega" name="nombreEntrega" required [(ngModel)]="nombreEntrega"> 
   </div>
   <div class="mb-3">
@@ -40,7 +40,7 @@
     <input type="text" class="form-control" id="unidadEntrega" name="unidadEntrega" required [(ngModel)]="unidadEntrega"> 
   </div>
 
-  <h3> <p class="text-success">Detalles del Equipo que se recepciona</p> </h3>
+  <h3> <p class="text-info">Detalles del Equipo que se recepciona</p> </h3>
   <div class="mb-3">
     <label for="serie" class="form-label">Serie:</label>
     <input type="text" class="form-control" id="serie" name="serie" required [(ngModel)]="serie"> 
@@ -54,7 +54,7 @@
     <input type="date" class="form-control" id="fechaMinistracion" name="fechaMinistracion" [(ngModel)]="fechaMinistracion"> 
   </div>
 
-  <h3> <p class="text-success">Datos del usuario que recibe</p> </h3>
+  <h3> <p class="text-info">Datos del usuario que recibe</p> </h3>
   <div class="mb-3">
     <label for="nombreRecibe" class="form-label">Nombre:</label>
     <input type="text" class="form-control" id="nombreRecibe" name="nombreRecibe" required [(ngModel)]="nombreRecibe"> 
@@ -90,7 +90,7 @@
     
     <form #formulario="ngForm"> 
 
-      <button type="button" class="btn btn-warning" (click)="onSubmit()">Enviar</button>
+      <button type="button" class="btn btn-success" (click)="onSubmit()">Enviar</button>
     </form>
   </div>  
 </div>

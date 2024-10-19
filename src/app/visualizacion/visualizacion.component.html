@@ -23,21 +23,24 @@
   </div>
 </nav>
 
-<div class="container mt-5">
-  <h2>Datos del Formulario</h2>
-  <table class="table table-striped">
+<div class="container mt-3"> 
+  <h2 class="text-center">Datos del Formulario</h2> 
+  <table class="table table-hover table-bordered"> 
+  
     <thead>
-      <tr>
-        <th>Nombre de Entrega</th>
-        <th>Unidad de Entrega</th>
-        <th>Serie</th>
-        <th>Descripción</th>
-        <th>Fecha de Ministración</th>
-        <th>Nombre de Recibe</th>
-        <th>Fecha de Recepción</th>
+      <tr class="table-success text-center">
+        <th scope="row">Nombre de Entrega</th>
+        <th scope="row">Unidad de Entrega</th>
+        <th scope="row">Serie</th>
+        <th scope="row">Descripción</th>
+        <th scope="row">Fecha de Ministración</th>
+        <th scope="row">Nombre de Recibe</th>
+        <th scope="row">Fecha de Recepción</th>
       </tr>
     </thead>
+    
     <tbody>
+
       <tr>
         <td>{{ equipo.nombreEntrega }}</td>
         <td>{{ equipo.unidadEntrega }}</td>

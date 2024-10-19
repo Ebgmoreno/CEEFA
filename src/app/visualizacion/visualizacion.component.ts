@@ -56,16 +56,13 @@ export class VisualizacionComponent implements OnInit {
     }
   }
 
-
   cambiarTema() {
-    this.temaOscuro = !this.temaOscuro;
+    this.temaOscuro = !this.temaOscuro; 
 
     if (this.temaOscuro) {
-      this.renderer.addClass(document.body, 'bg-dark');
-      this.renderer.addClass(document.body, 'navbar-dark');
+      this.renderer.addClass(document.body, 'dark-mode'); 
     } else {
-      this.renderer.removeClass(document.body, 'bg-dark');
-      this.renderer.removeClass(document.body, 'navbar-dark');
+      this.renderer.removeClass(document.body, 'dark-mode');
     }
   }
 

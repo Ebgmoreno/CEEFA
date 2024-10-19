@@ -1,26 +1,40 @@
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarColor01"> 
+      <button class="dropdown-item text-white float-end" (click)="cambiarTema()">Tema Claro/Oscuro</button>
+    </div>
+  </div>
+</nav>
+
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card">
+
+        
         <div class="card-header">
-          Iniciar Sesión
+          <h3>Iniciar Sesión</h3>
+          <h4>  <small class="text-body-secondary">Mantenimiento APX-2000</small></h4>          
         </div>
         <div class="card-body">
           <form #loginForm="ngForm">
             <div class="mb-3">
-              <label for="usuario" class="form-label">Usuario</label>
+              <p class="text-info"><strong>Usuario:</strong></p>
               <input type="text" class="form-control" id="usuario" name="usuario" required [(ngModel)]="usuario">
             </div>
             <div class="mb-3">
-              <label for="contrasena" class="form-label">Contraseña</label>
+              <p class="text-info"><strong>Contraseña:</strong></p>
               <input type="password" class="form-control" id="contrasena" name="contrasena" required [(ngModel)]="contrasena">
             </div>
-            <div class="alert alert-danger" *ngIf="mostrarError">
+
+            
+            <div class="alert alert-dismissible alert-primary" *ngIf="mostrarError">
               <span *ngIf="errorUsuario">{{errorUsuario}}</span>
               <span *ngIf="errorContrasena">{{errorContrasena}}</span>
               <span *ngIf="errorCredenciales">{{errorCredenciales}}</span>
             </div>
-            <button type="button" class="btn btn-primary" (click)="onSubmit(loginForm)">Iniciar Sesión</button>
+           
+            <button type="button" class="btn btn-info" (click)="onSubmit(loginForm)">Iniciar Sesión</button>
           </form>
         </div>
       </div>

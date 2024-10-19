@@ -1,36 +1,38 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand">Formulario de Equipos</a>
+    <span class="navbar-brand">Formulario Equipos</span> 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
       aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto"> 
 
-<ul class="nav nav-pills"> 
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-      aria-expanded="false">Menú</a>
-    <div class="dropdown-menu">
-      <button class="dropdown-item" (click)="limpiarFormulario()">Limpiar Formulario</button> 
+        <li class="nav-item">
+          <a class="nav-link" (click)="navegarAVisualizacion()">Visualización</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="limpiarFormulario()">Limpiar Formulario</a>
+        </li>
+      
 
-      <button class="dropdown-item" routerLink="/equipos-registrados" (click)="test()">Equipos Registrados</button>
-
-      <button class="dropdown-item" (click)="cambiarTema()">Cambiar tema</button>
-      <div class="dropdown-divider"></div>
-      <button class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</button> 
-
-    </div>
-  </li>
-</ul>
+    
+        <li class="nav-item">
+          <a class="nav-link" (click)="cambiarTema()">Tema</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="cerrarSesion()">Cerrar Sesión</a>
+        </li>
+      </ul>      
     </div>
   </div>
 </nav>
 
 <div class="container mt-5">
-  <h3> <p class="text-success">Información del usuario que entrega</p> </h3>
+  <h3> <p class="text-info">Información del usuario que entrega</p> </h3>
   <div class="mb-3">
-    <label for="nombreEntrega" class="form-label">Nombre:</label>
+    <label for="nombreEntrega" class="form-label">Nombre</label>
     <input type="text" class="form-control" id="nombreEntrega" name="nombreEntrega" required [(ngModel)]="nombreEntrega"> 
   </div>
   <div class="mb-3">
@@ -38,7 +40,7 @@
     <input type="text" class="form-control" id="unidadEntrega" name="unidadEntrega" required [(ngModel)]="unidadEntrega"> 
   </div>
 
-  <h3> <p class="text-success">Detalles del Equipo que se recepciona</p> </h3>
+  <h3> <p class="text-info">Detalles del Equipo que se recepciona</p> </h3>
   <div class="mb-3">
     <label for="serie" class="form-label">Serie:</label>
     <input type="text" class="form-control" id="serie" name="serie" required [(ngModel)]="serie"> 
@@ -52,7 +54,7 @@
     <input type="date" class="form-control" id="fechaMinistracion" name="fechaMinistracion" [(ngModel)]="fechaMinistracion"> 
   </div>
 
-  <h3> <p class="text-success">Datos del usuario que recibe</p> </h3>
+  <h3> <p class="text-info">Datos del usuario que recibe</p> </h3>
   <div class="mb-3">
     <label for="nombreRecibe" class="form-label">Nombre:</label>
     <input type="text" class="form-control" id="nombreRecibe" name="nombreRecibe" required [(ngModel)]="nombreRecibe"> 
@@ -83,10 +85,13 @@
         </label>
       </div>
     </label>
-       
+
+    
+    
     <form #formulario="ngForm"> 
 
-      <button type="button" class="btn btn-warning" (click)="onSubmit()">Enviar</button>
+      <button type="button" class="btn btn-success" (click)="onSubmit()">Enviar</button>
     </form>
   </div>  
 </div>
+

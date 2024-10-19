@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Equipo {
   nombreEntrega: string;
@@ -28,6 +29,17 @@ export class VisualizacionComponent implements OnInit {
     nombreRecibe: '',
     fechaRecepcion: ''
   };
+  
+  temaOscuro: boolean = false;
+
+  constructor(
+    private router: Router, 
+    private renderer: Renderer2
+  ) {}
+
+  navegarAFormulario() {
+    this.router.navigate(['/formulario']);
+  }
 
   ngOnInit() {
     const datosGuardados = localStorage.getItem('datosFormulario');
@@ -42,5 +54,22 @@ export class VisualizacionComponent implements OnInit {
     } else {
       console.warn("No se encontraron datos de equipos en localStorage.");
     }
+  }
+
+
+  cambiarTema() {
+    this.temaOscuro = !this.temaOscuro;
+
+    if (this.temaOscuro) {
+      this.renderer.addClass(document.body, 'bg-dark');
+      this.renderer.addClass(document.body, 'navbar-dark');
+    } else {
+      this.renderer.removeClass(document.body, 'bg-dark');
+      this.renderer.removeClass(document.body, 'navbar-dark');
+    }
+  }
+
+  cerrarSesion() {
+    this.router.navigate(['/']);
   }
 }

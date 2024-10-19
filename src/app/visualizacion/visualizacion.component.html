@@ -1,3 +1,29 @@
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <span class="navbar-brand">Equipos Registrados</span> 
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto"> 
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="navegarAFormulario()">Regresar al Formulario</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="cambiarTema()">Tema</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" (click)="cerrarSesion()">Cerrar Sesión</a>
+        </li>
+      </ul>  
+    </div>
+  </div>
+</nav>
+
 <div class="container mt-5">
   <h2>Datos del Formulario</h2>
   <table class="table table-striped">

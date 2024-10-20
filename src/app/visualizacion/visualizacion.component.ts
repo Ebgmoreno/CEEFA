@@ -10,6 +10,7 @@ interface Equipo {
   fechaMinistracion: string;
   nombreRecibe: string;
   fechaRecepcion: string;
+  prioridad: string; // Asegúrate de que la interfaz tenga la propiedad prioridad
 }
 
 @Component({
@@ -27,7 +28,8 @@ export class VisualizacionComponent implements OnInit {
     descripcion: '',
     fechaMinistracion: '',
     nombreRecibe: '',
-    fechaRecepcion: ''
+    fechaRecepcion: '',
+    prioridad: '' // Inicializa la propiedad prioridad
   };
   
   temaOscuro: boolean = false;
@@ -46,8 +48,7 @@ export class VisualizacionComponent implements OnInit {
   
     if (datosGuardados) {
       try {
-        const datosEquipo: Equipo = JSON.parse(datosGuardados); // Cambiamos de Equipo[] a Equipo
-        this.equipo = datosEquipo; // Asignamos el objeto a this.equipo
+        this.equipo = JSON.parse(datosGuardados); // Asignamos directamente el objeto a this.equipo
       } catch (error) {
         console.error("Error al analizar los datos de localStorage:", error);
       }

@@ -3,7 +3,6 @@ import { Component, ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-formulario-equipo',
   standalone: true,
@@ -20,7 +19,8 @@ export class FormularioEquipoComponent {
   fechaMinistracion: string = '';
   nombreRecibe: string = '';
   fechaRecepcion: string = '';
-  temaOscuro: boolean = false; // Variable para controlar el tema
+  prioridad: string = 'Ordinario'; 
+  temaOscuro: boolean = false; 
 
   constructor(
     private cdRef: ChangeDetectorRef, 
@@ -33,7 +33,6 @@ export class FormularioEquipoComponent {
   }
 
   onSubmit() {
-    // 1. Obtén los datos del formulario
     const datosFormulario = {
       nombreEntrega: this.nombreEntrega,
       unidadEntrega: this.unidadEntrega,
@@ -42,17 +41,12 @@ export class FormularioEquipoComponent {
       fechaMinistracion: this.fechaMinistracion,
       nombreRecibe: this.nombreRecibe,
       fechaRecepcion: this.fechaRecepcion,
-      // ... (obtén los valores de los demás campos, incluyendo la prioridad)
+      prioridad: this.prioridad 
     };
   
-    // 2. Guarda los datos en localStorage
     localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario));
   
-    // 3. (Opcional) Limpia el formulario
     this.limpiarFormulario();
-  
-    // 4. (Opcional) Muestra un mensaje de éxito
-    // ...
   }
 
   cambiarTema() {
@@ -78,14 +72,8 @@ export class FormularioEquipoComponent {
   }
 
   cerrarSesion() {
-    // 1. Eliminar la información de la sesión (si la hay)
-    // ... (implementa la lógica para eliminar la sesión) ...
-
-    // 2. Redirigir al usuario a la página de login
     this.router.navigate(['/']); 
   }
-
-
 }
 
 

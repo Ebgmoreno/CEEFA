@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Equipo } from '../models/equipo.model';
 
 @Component({
   selector: 'app-formulario-equipo',
@@ -44,7 +45,18 @@ export class FormularioEquipoComponent {
       prioridad: this.prioridad 
     };
   
-    localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario));
+    // 1. Obtener los datos existentes del localStorage
+    let equipos: Equipo[] = [];
+    const datosGuardados = localStorage.getItem('equipos'); // Cambiamos la clave a 'equipos'
+    if (datosGuardados) {
+      equipos = JSON.parse(datosGuardados);
+    }
+
+    // 2. Agregar el nuevo equipo al array
+    equipos.push(datosFormulario);
+
+    // 3. Guardar el array actualizado en el localStorage
+    localStorage.setItem('equipos', JSON.stringify(equipos));
   
     this.limpiarFormulario();
   }

@@ -39,7 +39,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let equipo of equipos"> 
         <td>{{ equipo.nombreEntrega }}</td>
         <td>{{ equipo.unidadEntrega }}</td>
         <td>{{ equipo.serie }}</td>
@@ -50,5 +50,3 @@
         <td>{{ equipo.prioridad }}</td> 
       </tr>
     </tbody>
-  </table>
-</div>

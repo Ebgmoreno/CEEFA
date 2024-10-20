@@ -1,17 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
+import { Equipo } from '../models/equipo.model';
 
-interface Equipo {
-  nombreEntrega: string;
-  unidadEntrega: string;
-  serie: string;
-  descripcion: string;
-  fechaMinistracion: string;
-  nombreRecibe: string;
-  fechaRecepcion: string;
-  prioridad: string; // Asegúrate de que la interfaz tenga la propiedad prioridad
-}
 
 @Component({
   selector: 'app-visualizacion',
@@ -21,21 +12,12 @@ interface Equipo {
   styleUrls: ['./visualizacion.component.css']
 })
 export class VisualizacionComponent implements OnInit {
-  equipo: Equipo = { // Inicializamos con un objeto vacío
-    nombreEntrega: '',
-    unidadEntrega: '',
-    serie: '',
-    descripcion: '',
-    fechaMinistracion: '',
-    nombreRecibe: '',
-    fechaRecepcion: '',
-    prioridad: '' // Inicializa la propiedad prioridad
-  };
-  
+  equipos: Equipo[] = []; // Declara equipos como un array de Equipo
+
   temaOscuro: boolean = false;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private renderer: Renderer2
   ) {}
 
@@ -44,11 +26,11 @@ export class VisualizacionComponent implements OnInit {
   }
 
   ngOnInit() {
-    const datosGuardados = localStorage.getItem('datosFormulario');
-  
+    const datosGuardados = localStorage.getItem('equipos'); // Lee la información de la clave "equipos"
+
     if (datosGuardados) {
       try {
-        this.equipo = JSON.parse(datosGuardados); // Asignamos directamente el objeto a this.equipo
+        this.equipos = JSON.parse(datosGuardados); // Parsea los datos y los asigna al array equipos
       } catch (error) {
         console.error("Error al analizar los datos de localStorage:", error);
       }
@@ -58,10 +40,10 @@ export class VisualizacionComponent implements OnInit {
   }
 
   cambiarTema() {
-    this.temaOscuro = !this.temaOscuro; 
+    this.temaOscuro = !this.temaOscuro;
 
     if (this.temaOscuro) {
-      this.renderer.addClass(document.body, 'dark-mode'); 
+      this.renderer.addClass(document.body, 'dark-mode');
     } else {
       this.renderer.removeClass(document.body, 'dark-mode');
     }

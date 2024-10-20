@@ -65,33 +65,29 @@
   </div>
   <div class="mb-3">
 
-    <label class="form-label">Prioridad:
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="ordinario">
-        <label class="form-check-label" for="ordinario">
-          Ordinario
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="urgente">
-        <label class="form-check-label" for="urgente">
-          Urgente
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="extraurgente">
-        <label class="form-check-label" for="extraurgente">
-          Extraurgente
-        </label>
-      </div>
-    </label>
-
+    <label class="form-label">Prioridad:</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="prioridad" value="Ordinario" id="ordinario" [(ngModel)]="prioridad">
+      <label class="form-check-label" for="ordinario">
+        Ordinario
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="prioridad" value="Urgente" id="urgente" [(ngModel)]="prioridad">
+      <label class="form-check-label" for="urgente">
+        Urgente
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="prioridad" value="Extraurgente" id="extraurgente" [(ngModel)]="prioridad">
+      <label class="form-check-label" for="extraurgente">
+        Extraurgente
+      </label>
+    </div>
     
-    
+  </div> 
     <form #formulario="ngForm"> 
-
       <button type="button" class="btn btn-success" (click)="onSubmit()">Enviar</button>
     </form>
   </div>  
-</div>
 

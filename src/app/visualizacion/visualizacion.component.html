@@ -5,29 +5,27 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto"> 
-
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <a class="nav-link" (click)="navegarAFormulario()">Regresar al Formulario</a>
         </li>
-
         <li class="nav-item">
           <a class="nav-link" (click)="cambiarTema()">Tema</a>
-        </li>
-      
+        </li>      
         <li class="nav-item">
           <a class="nav-link" (click)="cerrarSesion()">Cerrar Sesión</a>
         </li> 
+
       </ul> 
+      <div class="d-flex">
+        <input type="text" class="form-control me-sm-2" placeholder="Buscar equipo..." [(ngModel)]="textoBusqueda">
+        <button class="btn btn-primary" (click)="buscarEquipo()">Buscar</button>
+      </div>
     </div>
   </div>
 </nav>
 
-<div class="container mt-4"> 
-    <div class="input-group mb-3">
-      <input type="text" class="form-control me-sm-2" placeholder="Buscar equipo..." [(ngModel)]="textoBusqueda">
-      <button class="btn btn-info" (click)="buscarEquipo()">Buscar</button>
-    </div>
+<div class="container mt-6"> 
 
   <h2 class="text-center">Datos del Formulario</h2> 
   <table class="table table-hover table-bordered"> 

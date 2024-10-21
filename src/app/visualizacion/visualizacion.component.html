@@ -14,16 +14,21 @@
         <li class="nav-item">
           <a class="nav-link" (click)="cambiarTema()">Tema</a>
         </li>
-        
+      
         <li class="nav-item">
           <a class="nav-link" (click)="cerrarSesion()">Cerrar Sesión</a>
-        </li>
-      </ul>  
+        </li> 
+      </ul> 
     </div>
   </div>
 </nav>
 
-<div class="container mt-3"> 
+<div class="container mt-4"> 
+    <div class="input-group mb-3">
+      <input type="text" class="form-control me-sm-2" placeholder="Buscar equipo..." [(ngModel)]="textoBusqueda">
+      <button class="btn btn-info" (click)="buscarEquipo()">Buscar</button>
+    </div>
+
   <h2 class="text-center">Datos del Formulario</h2> 
   <table class="table table-hover table-bordered"> 
     <thead>

@@ -1,0 +1,25 @@
+<div class="container mt-3">
+    <h2>Detalles del Equipo</h2>
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr class="table-success text-center">
+          <th scope="row">Serie</th>
+          <th scope="row">Estado</th>
+          <th scope="row">Observaciones</th>
+          <th scope="row">Reparado por</th>
+          <th scope="row">Anotaciones</th>
+          <th scope="row">Datos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ equipo?.serie }}</td>
+          <td>{{ equipo?.estado }}</td>
+          <td>{{ equipo?.observaciones }}</td>
+          <td>{{ equipo?.reparadoPor }}</td>
+          <td>{{ equipo?.anotaciones }}</td>
+          <td>{{ equipo?.datos }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -18,10 +18,15 @@ export class VisualizacionComponent implements OnInit {
 
   temaOscuro: boolean = false;
   textoBusqueda: string = '';
-  constructor(
-    private router: Router,
-    private renderer: Renderer2
-  ) {}
+
+constructor(
+  private router: Router, // Inyecta Router en el constructor
+  private renderer: Renderer2
+) {}
+
+verDetalles(serie: string) { 
+  this.router.navigate(['/detalles', serie]);
+}
 
   navegarAFormulario() {
     this.router.navigate(['/formulario']);

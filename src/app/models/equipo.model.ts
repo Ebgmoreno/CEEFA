@@ -7,4 +7,9 @@ export interface Equipo {
     nombreRecibe: string;
     fechaRecepcion: string;
     prioridad: string;
+    estado: string;
+    observaciones: string;
+    reparadoPor: string;
+    anotaciones: string;
+    datos: string;
   }

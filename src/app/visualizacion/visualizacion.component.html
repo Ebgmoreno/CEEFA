@@ -29,27 +29,28 @@
   <h3> <p class="text-info"><strong>Registro</strong></p> </h3>
  
   <table class="table table-hover table-bordered"> 
+
+    
     <thead>
       <tr class="table-success text-center">
-        <th scope="row">Nombre de Entrega</th>
-        <th scope="row">Unidad de Entrega</th>
-        <th scope="row">Serie</th>
-        <th scope="row">Descripción</th>
-        <th scope="row">Fecha de Ministración</th>
-        <th scope="row">Nombre de Recibe</th>
-        <th scope="row">Fecha de Recepción</th>
-        <th scope="row">Prioridad</th> 
+        // ... otras columnas
+        <th scope="row">Estado</th>
+        <th scope="row">Observaciones</th>
+        <th scope="row">Reparado por</th>
+        <th scope="row">Anotaciones</th>
+        <th scope="row">Datos</th>
+        <th scope="row">Detalles</th> 
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let equipo of equipos"> 
-        <td>{{ equipo.nombreEntrega }}</td>
-        <td>{{ equipo.unidadEntrega }}</td>
-        <td>{{ equipo.serie }}</td>
-        <td>{{ equipo.descripcion }}</td>
-        <td>{{ equipo.fechaMinistracion }}</td>
-        <td>{{ equipo.nombreRecibe }}</td>
-        <td>{{ equipo.fechaRecepcion }}</td>
-        <td>{{ equipo.prioridad }}</td> 
+        // ... otras columnas
+        <td>{{ equipo.estado }}</td>
+        <td>{{ equipo.observaciones }}</td>
+        <td>{{ equipo.reparadoPor }}</td>
+        <td>{{ equipo.anotaciones }}</td>
+        <td>{{ equipo.datos }}</td>
+        <td><button class="btn btn-info" (click)="verDetalles(equipo.serie)">Ver más</button></td>
+        
       </tr>
     </tbody>

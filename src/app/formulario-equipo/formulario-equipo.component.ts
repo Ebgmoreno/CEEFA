@@ -21,6 +21,11 @@ export class FormularioEquipoComponent {
   nombreRecibe: string = '';
   fechaRecepcion: string = '';
   prioridad: string = 'Ordinario'; 
+  estado: string = '';
+  observaciones: string = '';
+  reparadoPor: string = '';
+  anotaciones: string = '';
+  datos: string = '';
   temaOscuro: boolean = false; 
 
   constructor(
@@ -42,7 +47,12 @@ export class FormularioEquipoComponent {
       fechaMinistracion: this.fechaMinistracion,
       nombreRecibe: this.nombreRecibe,
       fechaRecepcion: this.fechaRecepcion,
-      prioridad: this.prioridad 
+      prioridad: this.prioridad,
+      estado: this.estado,
+      observaciones: this.observaciones,
+      reparadoPor: this.reparadoPor,
+      anotaciones: this.anotaciones,
+      datos: this.datos
     };
   
     // 1. Obtener los datos existentes del localStorage

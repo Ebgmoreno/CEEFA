@@ -38,7 +38,7 @@
         <td>{{ equipo?.observaciones }}</td>
         <td>{{ equipo?.reparadoPor }}</td>
         <td>{{ equipo?.anotaciones }}</td>
-        <td>{{ equipo?.datos }}</td>
+        <td><button class="btn btn-outline-info btn-sm" (click)="editarEquipo(equipo?.serie)">Editar</button></td>
       </tr>
     </tbody>
   </table>

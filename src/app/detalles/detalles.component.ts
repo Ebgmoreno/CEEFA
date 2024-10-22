@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Equipo } from '../models/equipo.model';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-detalles',
   standalone: true,
@@ -10,14 +11,21 @@ import { CommonModule } from '@angular/common';
   templateUrl: './detalles.component.html',
   styleUrls: ['./detalles.component.css']
 })
+
 export class DetallesComponent implements OnInit {
   equipo: Equipo | undefined;
 
   constructor(
     private route: ActivatedRoute, 
-    private router: Router,
+    private router: Router, // Inyecta Router en el constructor
     private renderer: Renderer2
   ) { }
+
+  editarEquipo(serie?: string) { // Hacer que el parámetro serie sea opcional
+    if (serie) {
+      this.router.navigate(['/mantenimiento', serie]);
+    }
+  }
 
   navegarAFormulario() {
     this.router.navigate(['/formulario']);

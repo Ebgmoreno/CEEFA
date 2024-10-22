@@ -19,6 +19,10 @@ export class DetallesComponent implements OnInit {
     private renderer: Renderer2
   ) { }
 
+  navegarAFormulario() {
+    this.router.navigate(['/formulario']);
+  }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       const serie = params['serie'];

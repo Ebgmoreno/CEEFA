@@ -1,88 +1,84 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <span class="navbar-brand">Formulario Equipos</span> 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
-      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto"> 
-
-        <li class="nav-item">
-          <a class="nav-link" (click)="navegarAVisualizacion()">Visualización</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="limpiarFormulario()">Limpiar Formulario</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="cambiarTema()">Tema</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="cerrarSesion()">Cerrar Sesión</a>
-        </li>
+        <ul class="nav nav-pills">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Menú</a>
+            <div class="dropdown-menu show" data-popper-placement="bottom-start" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 42px);">
+              <a class="dropdown-item" (click)="navegarAVisualizacion()">Equipos Registrados</a>
+              <a class="dropdown-item" (click)="limpiarFormulario()">Limpiar Formulario</a>
+              <a class="dropdown-item" (click)="cambiarTema()">Tema</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="cerrarSesion()">Cerrar Sesión</a>
+            </div>
+          </li>
+        </ul>
       </ul> 
-        </div>
+    </div>
   </div>
 </nav>
 
-<div class="container mt-5">
-  <h3> <p class="text-info">Información del usuario que entrega</p> </h3>
+<div class="container mt-1">
+
+  <h2><strong>Registro de Equipos</strong></h2>
+  <p></p>
+
+  <h3> <p class="text-info"><strong>Información del usuario que entrega</strong></p></h3>
   
-  <div class="mb-3">
+  <div class="mb-0">
     <label for="nombreEntrega" class="form-label">Nombre:</label>
     <input type="text" class="form-control" id="nombreEntrega" name="nombreEntrega" required [(ngModel)]="nombreEntrega"> 
   </div>
-  <div class="mb-3">
+  <div class="mb-0">
     <label for="unidadEntrega" class="form-label">Unidad:</label>
     <input type="text" class="form-control" id="unidadEntrega" name="unidadEntrega" required [(ngModel)]="unidadEntrega"> 
   </div>
 
-  <h3> <p class="text-info">Detalles del Equipo que se recepciona</p> </h3>
-  <div class="mb-3">
+  <h3> <p class="text-info"><strong>Detalles del Equipo que se recepciona</strong> </p> </h3>
+  <div class="mb-0">
     <label for="serie" class="form-label">Serie:</label>
     <input type="text" class="form-control" id="serie" name="serie" required [(ngModel)]="serie"> 
   </div>
-  <div class="mb-3">
+  <div class="mb-0">
     <label for="descripcion" class="form-label">Descripción:</label>
     <textarea class="form-control" id="descripcion" name="descripcion" rows="3" [(ngModel)]="descripcion"></textarea> 
   </div>
-  <div class="mb-3">
+  <div class="mb-0">
     <label for="fechaMinistracion" class="form-label">Fecha de ministración:</label>
     <input type="date" class="form-control" id="fechaMinistracion" name="fechaMinistracion" [(ngModel)]="fechaMinistracion"> 
   </div>
 
-  <h3> <p class="text-info">Datos del usuario que recibe</p> </h3>
-  <div class="mb-3">
+  <h3> <p class="text-info"><strong>Datos del usuario que recibe</strong> </p> </h3>
+  <div class="mb-0">
     <label for="nombreRecibe" class="form-label">Nombre:</label>
     <input type="text" class="form-control" id="nombreRecibe" name="nombreRecibe" required [(ngModel)]="nombreRecibe"> 
   </div>
-  <div class="mb-3">
+  <div class="mb-0">
     <label for="fechaRecepcion" class="form-label">Fecha de recepción:</label>
     <input type="date" class="form-control" id="fechaRecepcion" name="fechaRecepcion" [(ngModel)]="fechaRecepcion"> 
   </div>
-  <div class="mb-3">
+  <div class="mb-0">
 
     <label class="form-label">Prioridad:</label>
     <div class="form-check">
       <input class="form-check-input" type="radio" name="prioridad" value="Ordinario" id="ordinario" [(ngModel)]="prioridad">
-      <label class="form-check-label" for="ordinario">
+      <label class="form-check-label text-success" for="ordinario">
         Ordinario
       </label>
     </div>
     <div class="form-check">
       <input class="form-check-input" type="radio" name="prioridad" value="Urgente" id="urgente" [(ngModel)]="prioridad">
-      <label class="form-check-label" for="urgente">
+      <label class="form-check-label text-warning" for="urgente">
         Urgente
       </label>
     </div>
     <div class="form-check">
       <input class="form-check-input" type="radio" name="prioridad" value="Extraurgente" id="extraurgente" [(ngModel)]="prioridad">
-      <label class="form-check-label" for="extraurgente">
+      <label class="form-check-label text-danger" for="extraurgente">
         Extraurgente
       </label>
     </div>
-
   <button type="button" class="btn btn-success" (click)="onSubmit()">Enviar</button>
 </div>
 

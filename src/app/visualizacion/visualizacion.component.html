@@ -1,31 +1,29 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <span class="navbar-brand">Equipos Registrados</span> 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" (click)="navegarAFormulario()">Regresar al Formulario</a>
+      <ul class="navbar-nav"> 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menú</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="navegarAFormulario()">Regresar al Formulario</a>
+            <a class="dropdown-item" (click)="cambiarTema()">Tema</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="cerrarSesion()">Cerrar Sesión</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="cambiarTema()">Tema</a>
-        </li>     
-        <li class="nav-item">
-          <a class="nav-link" (click)="cerrarSesion()">Cerrar Sesión</a>
-        </li> 
+        <div class="d-flex">
+          <input type="text" class="form-control me-sm-2" placeholder="Buscar equipo..." [(ngModel)]="textoBusqueda">
+          <button class="btn btn-primary" (click)="buscarEquipo()">Buscar</button>
+        </div>
       </ul> 
-      <div class="d-flex">
-        <input type="text" class="form-control me-sm-2" placeholder="Buscar equipo..." [(ngModel)]="textoBusqueda">
-        <button class="btn btn-primary" (click)="buscarEquipo()">Buscar</button>
-      </div>
     </div>
   </div>
 </nav>
 
+
+
 <div class="container mt-6"> 
-  <h3> <p class="text-info"><strong>Registro</strong></p> </h3>
+  <h2><strong>Equipos Registrados</strong></h2>
 
   <table class="table table-hover table-bordered"> 
     <thead>

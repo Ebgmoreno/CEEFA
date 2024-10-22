@@ -2,42 +2,39 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Equipo } from '../models/equipo.model';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule
-
-
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-visualizacion',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './visualizacion.component.html',
   styleUrls: ['./visualizacion.component.css']
 })
 export class VisualizacionComponent implements OnInit {
-  equipos: Equipo[] = []; // Declara equipos como un array de Equipo
+  equipos: Equipo[] = []; 
 
   temaOscuro: boolean = false;
   textoBusqueda: string = '';
+  constructor(
+    private router: Router,
+    private renderer: Renderer2
+  ) {}
 
-constructor(
-  private router: Router, // Inyecta Router en el constructor
-  private renderer: Renderer2
-) {}
-
-verDetalles(serie: string) { 
-  this.router.navigate(['/detalles', serie]);
-}
+  verDetalles(serie: string) {
+    this.router.navigate(['/detalles', serie]);
+  }
 
   navegarAFormulario() {
     this.router.navigate(['/formulario']);
   }
 
   ngOnInit() {
-    const datosGuardados = localStorage.getItem('equipos'); // Lee la información de la clave "equipos"
+    const datosGuardados = localStorage.getItem('equipos'); 
 
     if (datosGuardados) {
       try {
-        this.equipos = JSON.parse(datosGuardados); // Parsea los datos y los asigna al array equipos
+        this.equipos = JSON.parse(datosGuardados); 
       } catch (error) {
         console.error("Error al analizar los datos de localStorage:", error);
       }
@@ -47,21 +44,19 @@ verDetalles(serie: string) {
   }
 
   buscarEquipo() {
-    // 1. Obtener los equipos del localStorage
     const datosGuardados = localStorage.getItem('equipos');
     if (datosGuardados) {
       try {
         this.equipos = JSON.parse(datosGuardados);
       } catch (error) {
         console.error("Error al analizar los datos de localStorage:", error);
-        return; // Salir de la función si hay un error
+        return; 
       }
     } else {
       console.warn("No se encontraron datos de equipos en localStorage.");
-      return; // Salir de la función si no hay datos
+      return; 
     }
 
-    // 2. Filtrar los equipos
     if (this.textoBusqueda) {
       const textoBusquedaLower = this.textoBusqueda.toLowerCase();
       this.equipos = this.equipos.filter(equipo => {
@@ -86,4 +81,5 @@ verDetalles(serie: string) {
   cerrarSesion() {
     this.router.navigate(['/']);
   }
+
 }

@@ -11,11 +11,10 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" (click)="cambiarTema()">Tema</a>
-        </li>      
+        </li>     
         <li class="nav-item">
           <a class="nav-link" (click)="cerrarSesion()">Cerrar Sesión</a>
         </li> 
-
       </ul> 
       <div class="d-flex">
         <input type="text" class="form-control me-sm-2" placeholder="Buscar equipo..." [(ngModel)]="textoBusqueda">
@@ -27,30 +26,33 @@
 
 <div class="container mt-6"> 
   <h3> <p class="text-info"><strong>Registro</strong></p> </h3>
- 
-  <table class="table table-hover table-bordered"> 
 
-    
+  <table class="table table-hover table-bordered"> 
     <thead>
       <tr class="table-success text-center">
-        // ... otras columnas
-        <th scope="row">Estado</th>
-        <th scope="row">Observaciones</th>
-        <th scope="row">Reparado por</th>
-        <th scope="row">Anotaciones</th>
-        <th scope="row">Datos</th>
+        <th scope="row">Nombre de Entrega</th>
+        <th scope="row">Unidad de Entrega</th>
+        <th scope="row">Serie</th>
+        <th scope="row">Descripción</th>
+        <th scope="row">Fecha de Ministración</th>
+        <th scope="row">Nombre de Recibe</th>
+        <th scope="row">Fecha de Recepción</th>
+        <th scope="row">Prioridad</th> 
         <th scope="row">Detalles</th> 
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let equipo of equipos"> 
-        // ... otras columnas
-        <td>{{ equipo.estado }}</td>
-        <td>{{ equipo.observaciones }}</td>
-        <td>{{ equipo.reparadoPor }}</td>
-        <td>{{ equipo.anotaciones }}</td>
-        <td>{{ equipo.datos }}</td>
+        <td>{{ equipo.nombreEntrega }}</td>
+        <td>{{ equipo.unidadEntrega }}</td>
+        <td>{{ equipo.serie }}</td>
+        <td>{{ equipo.descripcion }}</td>
+        <td>{{ equipo.fechaMinistracion }}</td>
+        <td>{{ equipo.nombreRecibe }}</td>
+        <td>{{ equipo.fechaRecepcion }}</td>
+        <td>{{ equipo.prioridad }}</td> 
         <td><button class="btn btn-info" (click)="verDetalles(equipo.serie)">Ver más</button></td>
-        
       </tr>
     </tbody>
+  </table>
+</div>

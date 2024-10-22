@@ -1,25 +1,51 @@
-<div class="container mt-3">
-    <h2>Detalles del Equipo</h2>
-    <table class="table table-hover table-bordered">
-      <thead>
-        <tr class="table-success text-center">
-          <th scope="row">Serie</th>
-          <th scope="row">Estado</th>
-          <th scope="row">Observaciones</th>
-          <th scope="row">Reparado por</th>
-          <th scope="row">Anotaciones</th>
-          <th scope="row">Datos</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ equipo?.serie }}</td>
-          <td>{{ equipo?.estado }}</td>
-          <td>{{ equipo?.observaciones }}</td>
-          <td>{{ equipo?.reparadoPor }}</td>
-          <td>{{ equipo?.anotaciones }}</td>
-          <td>{{ equipo?.datos }}</td>
-        </tr>
-      </tbody>
-    </table>
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <span class="navbar-brand">Situación del Equipo</span> 
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+       
+       
+          <li class="nav-item">
+            <a class="nav-link" (click)="navegarAVisualizacion()">Regresar a la visualización</a>
+          </li>
+
+       
+        <li class="nav-item">
+          <a class="nav-link" (click)="cambiarTema()">Tema</a>
+        </li>     
+        <li class="nav-item">
+          <a class="nav-link" (click)="cerrarSesion()">Cerrar Sesión</a>
+        </li> 
+      </ul> 
+    </div>
   </div>
+</nav>
+
+<div class="container mt-3">
+  <h2>Detalles del Equipo</h2>
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr class="table-success text-center">
+        <th scope="row">Serie</th>
+        <th scope="row">Estado</th>
+        <th scope="row">Observaciones</th>
+        <th scope="row">Reparado por</th>
+        <th scope="row">Anotaciones</th>
+        <th scope="row">Datos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ equipo?.serie }}</td>
+        <td>{{ equipo?.estado }}</td>
+        <td>{{ equipo?.observaciones }}</td>
+        <td>{{ equipo?.reparadoPor }}</td>
+        <td>{{ equipo?.anotaciones }}</td>
+        <td>{{ equipo?.datos }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -22,9 +22,9 @@
 
 <div class="container mt-6"> 
   <h2> <p class="text-center"><strong>Equipos Registrados</strong></p></h2>
-  <table class="table table-hover table-bordered"> 
-    <thead>
-      <tr class="table-primary text-center">
+  <table class="table table-hover table-bordered text-center align-middle"> 
+    <thead> 
+      <tr class="table-primary text-center align-middle">
         <th scope="row">Nombre de Entrega</th>
         <th scope="row">Unidad de Entrega</th>
         <th scope="row">Serie</th>
@@ -47,7 +47,7 @@
         <td>{{ equipo.nombreRecibe }}</td>
         <td>{{ equipo.fechaRecepcion }}</td>
         <td>{{ equipo.prioridad }}</td> 
-        <td><button class="btn btn-outline-info" (click)="verDetalles(equipo.serie)">Ver</button></td>
+        <td><button class="btn btn-outline-info btn-sm" (click)="verDetalles(equipo.serie)">Ver</button></td>
       </tr>
     </tbody>
   </table>

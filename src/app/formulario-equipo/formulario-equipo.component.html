@@ -18,76 +18,71 @@
 </nav>
 
 <div class="container mt-1">
-  <h2> <p class="text-center"><strong>Registro de Equipos</strong></p></h2>
-  <h3> <p class="text-info"><strong>Usuario que entrega</strong></p></h3>
-  
-  <div class="mb-0">
-    <label for="nombreEntrega" class="form-label">Nombre:</label>
-    <input type="text" class="form-control" id="nombreEntrega" name="nombreEntrega" required [(ngModel)]="nombreEntrega"> 
-  </div>
-  
-  <div class="mb-0">
-    <label for="unidadEntrega" class="form-label">Unidad:</label>
-    <input type="text" class="form-control" id="unidadEntrega" name="unidadEntrega" required [(ngModel)]="unidadEntrega"> 
-  </div>
+  <h2 class="text-center">Registro de Equipos</h2>
 
-  <h3> <p class="text-info"><strong>Equipo que se recepciona</strong> </p> </h3>
-  
-  <div class="mb-0">
-    <label for="serie" class="form-label">Serie:</label>
-    <input type="text" class="form-control" id="serie" name="serie" required [(ngModel)]="serie"> 
-  </div>
-  
-  <div class="mb-0">
-    <label for="descripcion" class="form-label">Descripción:</label>
-    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" [(ngModel)]="descripcion"></textarea> 
-  </div>
-  
-  <div class="mb-0">
-    <label for="fechaMinistracion" class="form-label">Fecha de ministración:</label>
-    <input type="date" class="form-control" id="fechaMinistracion" name="fechaMinistracion" [(ngModel)]="fechaMinistracion"> 
-  </div>
+  <fieldset>
+    <legend><p class="text-dark"><strong>Usuario que entrega</strong></p></legend>
+    <div class="mb-3">
+      <label for="nombreEntrega" class="form-label">Nombre:</label>
+      <input type="text" class="form-control bg-light" id="nombreEntrega" name="nombreEntrega" required [(ngModel)]="nombreEntrega"> 
+    </div>
+    <div class="mb-3">
+      <label for="unidadEntrega" class="form-label">Unidad:</label>
+      <input type="text" class="form-control bg-light" id="unidadEntrega" name="unidadEntrega" required [(ngModel)]="unidadEntrega"> 
+    </div>
+  </fieldset>
 
-  <h3> <p class="text-info"><strong>Usuario que recibe</strong> </p> </h3>
-  
-  <div class="mb-0">
-    <label for="nombreRecibe" class="form-label">Nombre:</label>
-    <input type="text" class="form-control" id="nombreRecibe" name="nombreRecibe" required [(ngModel)]="nombreRecibe"> 
-  </div>
-  
-  <div class="mb-0">
-    <label for="fechaRecepcion" class="form-label">Fecha de recepción:</label>
-    <input type="date" class="form-control" id="fechaRecepcion" name="fechaRecepcion" [(ngModel)]="fechaRecepcion"> 
-  </div>
-  
-  <div class="mb-0">
+  <fieldset>
+    <legend><p class="text-dark"><strong>Equipo que se recepciona</strong></p></legend>
+    <div class="mb-3">
+      <label for="serie" class="form-label">Serie:</label>
+      <input type="text" class="form-control bg-light" id="serie" name="serie" required pattern="[a-zA-Z0-9]+" [(ngModel)]="serie" #serieInput="ngModel"> 
+      <div *ngIf="serieInput.invalid && (serieInput.dirty || serieInput.touched)" class="alert alert-danger">
+        La serie solo puede contener letras y números.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción:</label>
+      <textarea class="form-control bg-light" id="descripcion" name="descripcion" rows="3" [(ngModel)]="descripcion"></textarea> 
+    </div>
+    <div class="mb-3">
+      <label for="fechaMinistracion" class="form-label">Fecha de ministración:</label>
+      <input type="date" class="form-control bg-light" id="fechaMinistracion" name="fechaMinistracion" [(ngModel)]="fechaMinistracion"> 
+    </div>
+  </fieldset>
 
-    <label class="form-label">Prioridad:</label>
-      
+  <fieldset>
+    <legend><p class="text-dark"><strong>Usuario que recibe</strong></p></legend>
+    <div class="mb-3">
+      <label for="nombreRecibe" class="form-label">Nombre:</label>
+      <input type="text" class="form-control bg-light" id="nombreRecibe" name="nombreRecibe" required [(ngModel)]="nombreRecibe"> 
+    </div>
+    <div class="mb-3">
+      <label for="fechaRecepcion" class="form-label">Fecha de recepción:</label>
+      <input type="date" class="form-control bg-light" id="fechaRecepcion" name="fechaRecepcion" [(ngModel)]="fechaRecepcion"> 
+    </div>
+  </fieldset>
+
+  <div class="mb-3 flex-column">
+    <label class="form-label text-dark"><strong>Prioridad:</strong></label> 
     <div class="form-check">
       <input class="form-check-input" type="radio" name="prioridad" value="Ordinario" id="ordinario" [(ngModel)]="prioridad">
       <label class="form-check-label text-success" for="ordinario">
         Ordinario
-        </label>
+      </label>
     </div>
-      
     <div class="form-check">
       <input class="form-check-input" type="radio" name="prioridad" value="Urgente" id="urgente" [(ngModel)]="prioridad">
       <label class="form-check-label text-warning" for="urgente">
         Urgente
-    </label>
+      </label>
     </div>
-    
     <div class="form-check">
       <input class="form-check-input" type="radio" name="prioridad" value="Extraurgente" id="extraurgente" [(ngModel)]="prioridad">
       <label class="form-check-label text-danger" for="extraurgente">
         Extra-Urgente
       </label>
     </div>
-    <p></p>
-    <p></p>
-    <button type="button" class="btn btn-outline-info btn-sm text-center" (click)="onSubmit()">Enviar</button>
-
   </div>
+  <button type="button" class="btn btn-outline-info text-center" (click)="onSubmit()">Enviar</button> 
 </div>
-

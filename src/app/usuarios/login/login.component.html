@@ -1,23 +1,19 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
+      <a class="navbar-brand" href="#"><strong>Bienvenido</strong></a>
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav"> 
         </ul> 
      </div>
    </div>
   </nav>
-
   <div class="container-fluid login-container">
     <div class="row">
       <div class="col-md-6 left-column">
-        <h1>Centro de Estudios del Ejército y Fuerza Aérea</h1>
-        <p>Escuela Militar de Logística</p>
-      </div>
-      <div class="col-md-6 right-column">
-        <div class="container mt-4">
+        <div class="container mt-1">
           <div class="row justify-content-center">
-            <div class="col-md-9">
-              <div class="card">
+            <div class="col-md-8">
+              <div class="card" style="max-width: 25rem;">
                 <div class="card-header text-info">
                   <h3><p class="text-center"><strong>Iniciar Sesión</strong></p></h3>
                   <h4><p class="text-body-secondary text-center"><small>Mantenimiento APX-2000</small></p></h4>           
@@ -25,10 +21,10 @@
                 <div class="card-body">
                   <form #loginForm="ngForm">
                     <div class="mb-2">
-                      <input type="text" placeholder="Usuario" class="form-control" id="usuario" name="usuario" required [(ngModel)]="usuario">
+                      <input type="text" placeholder="Usuario" class="form-control border-info" id="usuario" name="usuario" required [(ngModel)]="usuario">
                     </div>
                     <div class="mb-2">
-                      <input type="password" placeholder="Contraseña" class="form-control" id="contrasena" name="contrasena" required [(ngModel)]="contrasena">
+                      <input type="password" placeholder="Contraseña" class="form-control border-info" id="contrasena" name="contrasena" required [(ngModel)]="contrasena">
                     </div>
                     <div class="alert alert-dismissible alert-primary" *ngIf="mostrarError">
                       <span *ngIf="errorUsuario">{{errorUsuario}}</span>
@@ -42,6 +38,10 @@
             </div>
           </div>
         </div>
+      </div>    
+      <div class="col-md-6 right-column">
+        <h1>Centro de Estudios del Ejército y Fuerza Aérea</h1>
+        <p>Escuela Militar de Logística</p>
       </div>
     </div>
   </div>

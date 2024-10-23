@@ -39,7 +39,7 @@ export class FormularioEquipoComponent {
   }
 
   onSubmit() {
-    const datosFormulario = {
+    const datosFormulario: Equipo = { // Tipado del objeto
       nombreEntrega: this.nombreEntrega,
       unidadEntrega: this.unidadEntrega,
       serie: this.serie,
@@ -55,18 +55,27 @@ export class FormularioEquipoComponent {
       datos: this.datos
     };
   
-    // 1. Obtener los datos existentes del localStorage
-    let equipos: Equipo[] = [];
-    const datosGuardados = localStorage.getItem('equipos'); // Cambiamos la clave a 'equipos'
-    if (datosGuardados) {
-      equipos = JSON.parse(datosGuardados);
+    try {
+      // 1. Obtener los datos existentes del localStorage
+      let equipos: Equipo[] = [];
+      const datosGuardados = localStorage.getItem('equipos'); 
+      if (datosGuardados) {
+        equipos = JSON.parse(datosGuardados);
+      }
+
+      // 2. Agregar el nuevo equipo al array
+      equipos.push(datosFormulario);
+
+      // 3. Guardar el array actualizado en el localStorage
+      localStorage.setItem('equipos', JSON.stringify(equipos));
+  
+      // Mostrar un mensaje de éxito (puedes usar una alerta o un snackbar)
+      console.log("Equipo guardado correctamente.");
+    } catch (error) {
+      // Manejar el error al guardar en localStorage
+      console.error("Error al guardar el equipo:", error);
+      // Mostrar un mensaje de error al usuario
     }
-
-    // 2. Agregar el nuevo equipo al array
-    equipos.push(datosFormulario);
-
-    // 3. Guardar el array actualizado en el localStorage
-    localStorage.setItem('equipos', JSON.stringify(equipos));
   
     this.limpiarFormulario();
   }

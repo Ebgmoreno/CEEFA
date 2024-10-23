@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.left-column {
-  text-align: center;
+.right-column {
+  text-align: center; /* Centra el texto en la columna derecha */
+  /* Puedes agregar estilos adicionales para la columna derecha si es necesario */
 }
-

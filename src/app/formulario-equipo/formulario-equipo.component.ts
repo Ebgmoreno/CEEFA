@@ -3,6 +3,8 @@ import { Component, ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Equipo } from '../models/equipo.model';
+import { formatDate } from '@angular/common';
+
 
 @Component({
   selector: 'app-formulario-equipo',
@@ -27,6 +29,8 @@ export class FormularioEquipoComponent {
   anotaciones: string = '';
   datos: string = '';
   temaOscuro: boolean = false; 
+  fechaActual: string = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
+
 
   constructor(
     private cdRef: ChangeDetectorRef, 

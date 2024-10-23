@@ -43,12 +43,11 @@
     </div>
     <div class="mb-3">
       <label for="descripcion" class="form-label">Descripción:</label>
-      <textarea class="form-control bg-light" id="descripcion" name="descripcion" rows="3" [(ngModel)]="descripcion"></textarea> 
+      <textarea class="form-control bg-light" id="descripcion" name="descripcion" rows="3" required [(ngModel)]="descripcion"></textarea> 
     </div>
     <div class="mb-3">
       <label for="fechaMinistracion" class="form-label">Fecha de ministración:</label>
-      <input type="date" class="form-control bg-light" id="fechaMinistracion" name="fechaMinistracion" [(ngModel)]="fechaMinistracion"> 
-    </div>
+      <input type="date" class="form-control bg-light" id="fechaMinistracion" name="fechaMinistracion" max="{{ fechaActual }}" [(ngModel)]="fechaMinistracion">    </div>
   </fieldset>
 
   <fieldset>
@@ -59,8 +58,7 @@
     </div>
     <div class="mb-3">
       <label for="fechaRecepcion" class="form-label">Fecha de recepción:</label>
-      <input type="date" class="form-control bg-light" id="fechaRecepcion" name="fechaRecepcion" [(ngModel)]="fechaRecepcion"> 
-    </div>
+      <input type="date" class="form-control bg-light" id="fechaRecepcion" name="fechaRecepcion" max="{{ fechaActual }}" [(ngModel)]="fechaRecepcion">    </div>
   </fieldset>
 
   <div class="mb-3 flex-column">

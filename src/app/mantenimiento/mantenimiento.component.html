@@ -17,3 +17,27 @@
       </div>
     </div>
   </nav>
+
+  <form (ngSubmit)="guardarCambios()">
+    <div class="mb-3">
+      <label for="estado" class="form-label">Estado:</label>
+      <select class="form-select" id="estado" [(ngModel)]="equipo.estado" name="estado">
+        <option value="Almacén">Almacén</option>
+        <option value="Mantenimiento">Mantenimiento</option>
+        <option value="Reparaciones">Reparaciones</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="observaciones" class="form-label">Observaciones:</label>
+      <textarea class="form-control" id="observaciones" [(ngModel)]="equipo.observaciones" name="observaciones"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="reparadoPor" class="form-label">Reparado por:</label>
+      <input type="text" class="form-control" id="reparadoPor" [(ngModel)]="equipo.reparadoPor" name="reparadoPor">
+    </div>
+    <div class="mb-3">
+      <label for="anotaciones" class="form-label">Anotaciones:</label>
+      <textarea class="form-control" id="anotaciones" [(ngModel)]="equipo.anotaciones" name="anotaciones"></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-info btn-sm">Guardar</button>
+  </form>

@@ -53,14 +53,4 @@ export class LoginComponent {
       this.mostrarError = true;
     }
   }
-
-  cambiarTema() {
-    this.temaOscuro = !this.temaOscuro; 
-
-    if (this.temaOscuro) {
-      this.renderer.addClass(document.body, 'dark-mode'); 
-    } else {
-      this.renderer.removeClass(document.body, 'dark-mode');
-    }
-  }
 }

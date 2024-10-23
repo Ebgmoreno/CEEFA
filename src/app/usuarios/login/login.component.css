@@ -1,5 +1,11 @@
+.login-container {
+  background-color: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
 
-.float-end {
-    margin-right: 10px; 
-  }
+.left-column {
+  text-align: center;
+}
 

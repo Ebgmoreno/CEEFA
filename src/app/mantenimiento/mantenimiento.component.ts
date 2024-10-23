@@ -1,34 +1,64 @@
-import { Component, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Equipo } from '../models/equipo.model';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router'; 
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-mantenimiento',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './mantenimiento.component.html',
   styleUrls: ['./mantenimiento.component.css']
 })
-export class MantenimientoComponent {
+
+export class MantenimientoComponent implements OnInit {
+  equipo: Equipo = { // Inicializar con valores por defecto
+    nombreEntrega: '',
+    unidadEntrega: '',
+    serie: '',
+    descripcion: '',
+    fechaMinistracion: '',
+    nombreRecibe: '',
+    fechaRecepcion: '',
+    prioridad: '',
+    estado: '',
+    observaciones: '',
+    reparadoPor: '',
+    anotaciones: '',
+    datos: ''
+  };
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
-    private renderer: Renderer2,
-    private route: ActivatedRoute // Inyecta ActivatedRoute
+    private renderer: Renderer2
   ) { }
 
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      const serie = params['serie'];
+      const equiposGuardados = localStorage.getItem('equipos');
+      if (equiposGuardados) {
+        const equipos: Equipo[] = JSON.parse(equiposGuardados);
+        const equipoEncontrado = equipos.find(e => e.serie === serie);
+
+        if (equipoEncontrado) {
+          this.equipo = equipoEncontrado;
+        } else {
+          console.error("No se encontró el equipo con la serie:", serie);
+        }
+      }
+    });
+  }
+
   navegarADetalles() {
-    // Obtener la serie del equipo de la URL actual
-    const serie = this.route.snapshot.paramMap.get('serie'); 
-  
+    const serie = this.route.snapshot.paramMap.get('serie');
+
     if (serie) {
       this.router.navigate(['/detalles', serie]);
     } else {
-      // Manejar el caso en que no se encuentre la serie en la URL
       console.error("No se pudo obtener la serie del equipo.");
-      // Puedes redirigir a otra página o mostrar un mensaje de error
     }
   }
 
@@ -54,4 +84,22 @@ export class MantenimientoComponent {
   cerrarSesion() {
     this.router.navigate(['/']);
   }
+
+  guardarCambios() {
+    const equiposGuardados = localStorage.getItem('equipos');
+    if (equiposGuardados) {
+      let equipos: Equipo[] = JSON.parse(equiposGuardados);
+
+      // Actualizar el equipo usando map()
+      equipos = equipos.map(e => 
+        e.serie === this.equipo.serie ? this.equipo : e
+      );
+
+      localStorage.setItem('equipos', JSON.stringify(equipos));
+      this.router.navigate(['/detalles', this.equipo.serie]);
+    }
+  }
 }
+
+
+

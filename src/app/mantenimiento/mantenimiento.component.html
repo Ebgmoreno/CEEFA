@@ -1,43 +1,54 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav"> 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menú</a>
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav"> 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menú</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" (click)="navegarADetalles()">Detalles del Equipo</a>
               <a class="dropdown-item" (click)="navegarAFormulario()">Formulario</a>
               <a class="dropdown-item" (click)="navegarAVisualizacion()">Equipos Registrados</a>
+              <a class="dropdown-item" (click)="navegarADetalles()">Detalles del Equipo</a>
               <a class="dropdown-item" (click)="cambiarTema()">Tema Claro/Oscuro</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" (click)="cerrarSesion()">Cerrar Sesión</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="cerrarSesion()">Cerrar Sesión</a>
+          </div>
+        </li>
+      </ul> 
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-2">
+  <h2 class="text-center"><strong>Editar estado del Equipo</strong></h2>
+  <div class="row justify-content-center"> 
+    <div class="col-md-6"> 
+      <div class="card border-info">
+        <div class="card-body">
+          <form (ngSubmit)="guardarCambios()">
+            <div class="mb-2">
+              <label for="estado" class="form-label">Estado:</label>
+              <select class="form-select border-secondary" id="estado" [(ngModel)]="equipo.estado" name="estado">
+                <option value="Almacén">Almacén</option>
+                <option value="Mantenimiento">Mantenimiento</option>
+                <option value="Reparaciones">Reparaciones</option>
+              </select>
             </div>
-          </li>
-        </ul> 
+            <div class="mb-2">
+              <label for="observaciones" class="form-label">Observaciones:</label>
+              <textarea class="form-control bg-light border-secondary" id="observaciones" [(ngModel)]="equipo.observaciones" name="observaciones"></textarea>
+            </div>
+            <div class="mb-2">
+              <label for="reparadoPor" class="form-label">Reparado por:</label>
+              <input type="text" class="form-control bg-light border-secondary" id="reparadoPor" [(ngModel)]="equipo.reparadoPor" name="reparadoPor">
+            </div>
+            <div class="mb-2">
+              <label for="anotaciones" class="form-label">Anotaciones:</label>
+              <textarea class="form-control bg-light border-secondary" id="anotaciones" [(ngModel)]="equipo.anotaciones" name="anotaciones"></textarea>
+            </div>
+            <button type="submit" class="btn btn-info btn-sm">Guardar</button>
+          </form>
+        </div>
       </div>
     </div>
-  </nav>
-
-  <form (ngSubmit)="guardarCambios()">
-    <div class="mb-3">
-      <label for="estado" class="form-label">Estado:</label>
-      <select class="form-select" id="estado" [(ngModel)]="equipo.estado" name="estado">
-        <option value="Almacén">Almacén</option>
-        <option value="Mantenimiento">Mantenimiento</option>
-        <option value="Reparaciones">Reparaciones</option>
-      </select>
-    </div>
-    <div class="mb-3">
-      <label for="observaciones" class="form-label">Observaciones:</label>
-      <textarea class="form-control" id="observaciones" [(ngModel)]="equipo.observaciones" name="observaciones"></textarea>
-    </div>
-    <div class="mb-3">
-      <label for="reparadoPor" class="form-label">Reparado por:</label>
-      <input type="text" class="form-control" id="reparadoPor" [(ngModel)]="equipo.reparadoPor" name="reparadoPor">
-    </div>
-    <div class="mb-3">
-      <label for="anotaciones" class="form-label">Anotaciones:</label>
-      <textarea class="form-control" id="anotaciones" [(ngModel)]="equipo.anotaciones" name="anotaciones"></textarea>
-    </div>
-    <button type="submit" class="btn btn-outline-info btn-sm">Guardar</button>
-  </form>
+  </div>
+</div>

@@ -21,53 +21,53 @@
   <h2 class="text-center"><strong>Registro de Equipos</strong></h2>
   <div class="container mt-1">
     <div class="row justify-content-center"> 
-      <div class="col-md-8"> 
+      <div class="col-md-7"> 
         <div class="card border-info">
           <div class="card-body">
             <fieldset>
               <legend><p class="text-primary text-center"><strong>Usuario que entrega</strong></p></legend>
-              <div class="mb-3">
+              <div class="mb-1">
                 <label for="nombreEntrega" class="form-label">Nombre:</label>
-                <input type="text" class="form-control bg-light" id="nombreEntrega" name="nombreEntrega" required [(ngModel)]="nombreEntrega"> 
+                <input type="text" class="form-control bg-light border-secondary" id="nombreEntrega" name="nombreEntrega" required [(ngModel)]="nombreEntrega"> 
               </div>
-              <div class="mb-3">
+              <div class="mb-1">
                 <label for="unidadEntrega" class="form-label">Unidad:</label>
-                <input type="text" class="form-control bg-light" id="unidadEntrega" name="unidadEntrega" required [(ngModel)]="unidadEntrega"> 
+                <input type="text" class="form-control bg-light border-secondary" id="unidadEntrega" name="unidadEntrega" required [(ngModel)]="unidadEntrega"> 
               </div>
             </fieldset>
   
             <fieldset>
               <legend><p class="text-primary text-center"><strong>Equipo que se recepciona</strong></p></legend>
-              <div class="mb-3">
+              <div class="mb-1">
                 <label for="serie" class="form-label">Serie:</label>
-                <input type="text" class="form-control bg-light" id="serie" name="serie" required pattern="[a-zA-Z0-9]+" [(ngModel)]="serie" #serieInput="ngModel"> 
+                <input type="text" class="form-control bg-light border-secondary" id="serie" name="serie" required pattern="[a-zA-Z0-9]+" [(ngModel)]="serie" #serieInput="ngModel"> 
                 <div *ngIf="serieInput.invalid && (serieInput.dirty || serieInput.touched)" class="alert alert-danger">
                   La serie solo puede contener letras y números.
                 </div>
               </div>
-              <div class="mb-3">
+              <div class="mb-1">
                 <label for="descripcion" class="form-label">Descripción:</label>
-                <textarea class="form-control bg-light" id="descripcion" name="descripcion" rows="3" required [(ngModel)]="descripcion"></textarea> 
+                <textarea class="form-control bg-light border-secondary" id="descripcion" name="descripcion" rows="3" required [(ngModel)]="descripcion"></textarea> 
               </div>
-              <div class="mb-3">
+              <div class="mb-1">
                 <label for="fechaMinistracion" class="form-label">Fecha de ministración:</label>
-                <input type="date" class="form-control bg-light" id="fechaMinistracion" name="fechaMinistracion" max="{{ fechaActual }}" [(ngModel)]="fechaMinistracion"> 
+                <input type="date" class="form-control bg-light border-secondary" id="fechaMinistracion" name="fechaMinistracion" max="{{ fechaActual }}" [(ngModel)]="fechaMinistracion"> 
               </div>
             </fieldset>
   
             <fieldset>
               <legend><p class="text-primary text-center"><strong>Usuario que recibe</strong></p></legend>
-              <div class="mb-3">
+              <div class="mb-1">
                 <label for="nombreRecibe" class="form-label">Nombre:</label>
-                <input type="text" class="form-control bg-light" id="nombreRecibe" name="nombreRecibe" required [(ngModel)]="nombreRecibe"> 
+                <input type="text" class="form-control bg-light border-secondary" id="nombreRecibe" name="nombreRecibe" required [(ngModel)]="nombreRecibe"> 
               </div>
-              <div class="mb-3">
+              <div class="mb-1">
                 <label for="fechaRecepcion" class="form-label">Fecha de recepción:</label>
-                <input type="date" class="form-control bg-light" id="fechaRecepcion" name="fechaRecepcion" max="{{ fechaActual }}" [(ngModel)]="fechaRecepcion"> 
+                <input type="date" class="form-control bg-light border-secondary" id="fechaRecepcion" name="fechaRecepcion" max="{{ fechaActual }}" [(ngModel)]="fechaRecepcion"> 
               </div>
             </fieldset>
   
-            <div class="mb-3 flex-column">
+            <div class="mb-1 flex-column">
               <label class="form-label">Prioridad:</label> 
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="prioridad" value="Ordinario" id="ordinario" [(ngModel)]="prioridad">

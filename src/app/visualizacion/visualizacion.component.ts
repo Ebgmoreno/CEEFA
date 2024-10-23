@@ -2,17 +2,22 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Equipo } from '../models/equipo.model';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-visualizacion',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgbPaginationModule],
   templateUrl: './visualizacion.component.html',
   styleUrls: ['./visualizacion.component.css']
 })
 export class VisualizacionComponent implements OnInit {
-  equipos: Equipo[] = []; 
+  equipos: Equipo[] = [];
+
+  page = 1;
+  pageSize = 5;
+  collectionSize = 0;
 
   temaOscuro: boolean = false;
   textoBusqueda: string = '';
@@ -41,6 +46,8 @@ export class VisualizacionComponent implements OnInit {
     } else {
       console.warn("No se encontraron datos de equipos en localStorage.");
     }
+
+    this.collectionSize = this.equipos.length; 
   }
 
   buscarEquipo() {
@@ -66,6 +73,8 @@ export class VisualizacionComponent implements OnInit {
                equipo.descripcion.toLowerCase().includes(textoBusquedaLower);
       });
     }
+
+    this.collectionSize = this.equipos.length; // Actualiza collectionSize después de filtrar
   }
 
   cambiarTema() {
@@ -82,4 +91,8 @@ export class VisualizacionComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  get equiposPaginados(): Equipo[] { 
+    return this.equipos
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
 }

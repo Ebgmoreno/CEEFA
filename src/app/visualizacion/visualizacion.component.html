@@ -36,9 +36,9 @@
         <th scope="row">Detalles</th> 
       </tr>
     </thead>
- 
+
     <tbody>
-      <tr *ngFor="let equipo of equipos"> 
+      <tr *ngFor="let equipo of equiposPaginados"> 
         <td>{{ equipo.nombreEntrega }}</td>
         <td>{{ equipo.unidadEntrega }}</td>
         <td>{{ equipo.serie }}</td>
@@ -51,4 +51,8 @@
       </tr>
     </tbody>
   </table>
+  <div class="d-flex justify-content-center">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+    </ngb-pagination>
+  </div> 
 </div>

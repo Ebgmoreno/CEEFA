@@ -1,6 +1,6 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><strong>Bienvenido</strong></a>
+      <a class="navbar-brand" href="#"><strong>Especialidad en Logísitica Militar</strong></a>
       <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav"> 
         </ul> 
@@ -12,7 +12,7 @@
       <div class="col-md-6 left-column">
         <div class="container mt-1">
           <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-7">
               <div class="card" style="max-width: 25rem;">
                 <div class="card-header text-info">
                   <h3><p class="text-center"><strong>Iniciar Sesión</strong></p></h3>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-body">
                   <form #loginForm="ngForm">
-                    <div class="mb-2">
+                    <div class="mb-1">
                       <input type="text" placeholder="Usuario" class="form-control border-info" id="usuario" name="usuario" required [(ngModel)]="usuario">
                     </div>
                     <div class="mb-2">
@@ -32,6 +32,10 @@
                       <span *ngIf="errorCredenciales">{{errorCredenciales}}</span>
                     </div>         
                     <button type="button" class="btn btn-info" (click)="onSubmit(loginForm)">Iniciar Sesión</button>
+                    <p></p>
+                    <a href="#">¿Has olvidado la contraseña?</a>
+                    <hr>
+                    <p class="text-black">¿No tienes una cuenta? <a href="#" class="link-info">Regístrate</a></p>
                   </form>
                 </div>
               </div>

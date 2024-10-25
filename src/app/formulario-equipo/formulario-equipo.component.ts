@@ -102,13 +102,10 @@ export class FormularioEquipoComponent {
     this.fechaMinistracion = '';
     this.nombreRecibe = '';
     this.fechaRecepcion = '';
-
-    this.cdRef.detectChanges();
+   this.cdRef.detectChanges();
   }
 
   cerrarSesion() {
     this.router.navigate(['/']); 
   }
 }
-
-

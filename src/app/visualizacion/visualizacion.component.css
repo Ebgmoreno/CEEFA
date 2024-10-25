@@ -9,3 +9,7 @@
   .prioridad-extraurgente {
     background-color: #f52c2c; /* Color rojo claro */
   }
+
+  td {
+    font-size: 12.5px;
+  }

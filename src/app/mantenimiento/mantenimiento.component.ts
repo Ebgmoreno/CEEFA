@@ -100,6 +100,3 @@ export class MantenimientoComponent implements OnInit {
     }
   }
 }
-
-
-

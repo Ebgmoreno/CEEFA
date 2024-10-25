@@ -13,15 +13,15 @@
         </li>
         <div class="d-flex">
           <input type="text" class="form-control me-sm-2" placeholder="Buscar equipo..." [(ngModel)]="textoBusqueda">
-          <button class="btn btn-info" (click)="buscarEquipo()">Buscar</button>
+          <button class="btn btn-primary" (click)="buscarEquipo()">Buscar</button>
         </div>
       </ul> 
     </div>
   </div>
 </nav>
 
-<div class="container mt-6"> 
-  <h2> <p class="text-center"><strong>Lista de Equipos Registrados</strong></p></h2>
+<div class="container w-1200 mt-1"> 
+  <h2> <p class="text-center">Lista de Equipos Registrados</p></h2>
   <table class="table table-hover table-bordered text-center align-middle"> 
     <thead> 
       <tr class="table-primary text-center align-middle">
@@ -29,14 +29,14 @@
         <th scope="row">Unidad</th>
         <th scope="row">Serie</th>
         <th scope="row">Descripción</th>
-        <th scope="row">Fecha de Ministración</th>
+        <th scope="row">Ministración</th>
         <th scope="row">Nombre</th>
-        <th scope="row">Fecha de Recepción</th>
+        <th scope="row">Recepción</th>
         <th scope="row">Prioridad</th> 
+        <th scope="row">Estado</th> 
         <th scope="row">Detalles</th> 
       </tr>
     </thead>
-
     <tbody>
       <tr *ngFor="let equipo of equiposPaginados"> 
         <td>{{ equipo.nombreEntrega }}</td>
@@ -52,6 +52,7 @@
           'prioridad-extraurgente': equipo.prioridad === 'Extraurgente' 
         }">
         {{ equipo.prioridad }}</td> 
+        <td>{{ equipo.estado }}</td> 
         <td><button class="btn btn-info btn-sm" (click)="verDetalles(equipo.serie)">Ver</button></td>
       </tr>
     </tbody>

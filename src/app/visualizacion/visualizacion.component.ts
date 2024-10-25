@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Equipo } from '../models/equipo.model';
 import { FormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-visualizacion',
@@ -16,7 +17,7 @@ export class VisualizacionComponent implements OnInit {
   equipos: Equipo[] = [];
 
   page = 1;
-  pageSize = 5;
+  pageSize = 10;
   collectionSize = 0;
 
   temaOscuro: boolean = false;
@@ -70,7 +71,12 @@ export class VisualizacionComponent implements OnInit {
         return equipo.nombreEntrega.toLowerCase().includes(textoBusquedaLower) ||
                equipo.unidadEntrega.toLowerCase().includes(textoBusquedaLower) ||
                equipo.serie.toLowerCase().includes(textoBusquedaLower) ||
-               equipo.descripcion.toLowerCase().includes(textoBusquedaLower);
+               equipo.descripcion.toLowerCase().includes(textoBusquedaLower) ||
+               equipo.fechaMinistracion.toLowerCase().includes(textoBusquedaLower) ||
+               equipo.nombreRecibe.toLowerCase().includes(textoBusquedaLower) ||
+               equipo.fechaRecepcion.toLowerCase().includes(textoBusquedaLower) ||
+               equipo.prioridad.toLowerCase().includes(textoBusquedaLower) ||
+               equipo.estado.toLowerCase().includes(textoBusquedaLower); // Agrega las demás propiedades aquí
       });
     }
 
@@ -95,4 +101,13 @@ export class VisualizacionComponent implements OnInit {
     return this.equipos
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
+
+  exportarExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(document.getElementById('tablaEquipos'));
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Equipos');
+  
+    XLSX.writeFile(wb, 'equipos.xlsx');
+  }
+
 }

@@ -1,14 +1,17 @@
 .prioridad-ordinario {
-    background-color: #44c152; /* Color verde claro */
-  }
-  
-  .prioridad-urgente {
-    background-color: #eef643; /* Color amarillo claro */
-  }
-  
-  .prioridad-extraurgente {
-    background-color: #f52c2c; /* Color rojo claro */
-  }
+  color: green; 
+  font-weight: bold; 
+}
+
+.prioridad-urgente {
+  color: orange; 
+  font-weight: bold; 
+}
+
+.prioridad-extraurgente {
+  color: red; 
+  font-weight: bold; 
+}
 
   td {
     font-size: 12.5px;

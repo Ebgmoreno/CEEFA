@@ -15,6 +15,7 @@ import * as XLSX from 'xlsx';
 })
 export class VisualizacionComponent implements OnInit {
   equipos: Equipo[] = [];
+  equiposFiltrados: Equipo[] = []; 
 
   page = 1;
   pageSize = 10;
@@ -22,6 +23,27 @@ export class VisualizacionComponent implements OnInit {
 
   temaOscuro: boolean = false;
   textoBusqueda: string = '';
+
+  filtro: {
+    nombreEntrega: string;
+    unidadEntrega: string;
+    prioridad: string;
+    descripcion: string;
+    fechaRecepcion: string;
+    estado: string;
+    fechaInicio: string; // Nueva propiedad para la fecha de inicio
+    fechaFin: string; // Nueva propiedad para la fecha de fin
+  } = {
+    nombreEntrega: '',
+    unidadEntrega: '',
+    prioridad: '',
+    descripcion: '',
+    fechaRecepcion: '',
+    estado: '',
+    fechaInicio: '',
+    fechaFin: ''
+  };
+
   constructor(
     private router: Router,
     private renderer: Renderer2
@@ -41,6 +63,7 @@ export class VisualizacionComponent implements OnInit {
     if (datosGuardados) {
       try {
         this.equipos = JSON.parse(datosGuardados); 
+        this.equiposFiltrados = this.equipos; 
       } catch (error) {
         console.error("Error al analizar los datos de localStorage:", error);
       }
@@ -64,10 +87,10 @@ export class VisualizacionComponent implements OnInit {
       console.warn("No se encontraron datos de equipos en localStorage.");
       return; 
     }
-
+  
     if (this.textoBusqueda) {
       const textoBusquedaLower = this.textoBusqueda.toLowerCase();
-      this.equipos = this.equipos.filter(equipo => {
+      this.equiposFiltrados = this.equipos.filter(equipo => { // Actualiza equiposFiltrados
         return equipo.nombreEntrega.toLowerCase().includes(textoBusquedaLower) ||
                equipo.unidadEntrega.toLowerCase().includes(textoBusquedaLower) ||
                equipo.serie.toLowerCase().includes(textoBusquedaLower) ||
@@ -76,11 +99,14 @@ export class VisualizacionComponent implements OnInit {
                equipo.nombreRecibe.toLowerCase().includes(textoBusquedaLower) ||
                equipo.fechaRecepcion.toLowerCase().includes(textoBusquedaLower) ||
                equipo.prioridad.toLowerCase().includes(textoBusquedaLower) ||
-               equipo.estado.toLowerCase().includes(textoBusquedaLower); // Agrega las demás propiedades aquí
+               equipo.estado.toLowerCase().includes(textoBusquedaLower); 
       });
+    } else {
+      // Si no hay texto de búsqueda, muestra todos los equipos
+      this.equiposFiltrados = this.equipos; 
     }
-
-    this.collectionSize = this.equipos.length; // Actualiza collectionSize después de filtrar
+  
+    this.collectionSize = this.equiposFiltrados.length; // Actualiza collectionSize
   }
 
   cambiarTema() {
@@ -97,17 +123,40 @@ export class VisualizacionComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  aplicarFiltro() {
+    if (this.filtro.fechaInicio && this.filtro.fechaFin && this.filtro.fechaInicio > this.filtro.fechaFin) {
+      console.error("La fecha de inicio no puede ser posterior a la fecha de fin.");
+      return;
+    }
+
+    this.equiposFiltrados = this.equipos.filter(equipo => {
+      const coincideNombre = !this.filtro.nombreEntrega || equipo.nombreEntrega.toLowerCase().includes(this.filtro.nombreEntrega.toLowerCase());
+      const coincideUnidad = !this.filtro.unidadEntrega || equipo.unidadEntrega.toLowerCase().includes(this.filtro.unidadEntrega.toLowerCase());
+      const coincidePrioridad = !this.filtro.prioridad || equipo.prioridad === this.filtro.prioridad;
+      const coincideDescripcion = !this.filtro.descripcion || equipo.descripcion.toLowerCase().includes(this.filtro.descripcion.toLowerCase());
+      const coincideFechaRecepcion = !this.filtro.fechaRecepcion || equipo.fechaRecepcion === this.filtro.fechaRecepcion;
+      const coincideEstado = !this.filtro.estado || equipo.estado === this.filtro.estado;
+
+      const coincideFechaInicio = !this.filtro.fechaInicio || equipo.fechaRecepcion >= this.filtro.fechaInicio;
+      const coincideFechaFin = !this.filtro.fechaFin || equipo.fechaRecepcion <= this.filtro.fechaFin;
+  
+      return coincideNombre && coincideUnidad && coincidePrioridad && coincideDescripcion && coincideFechaRecepcion && coincideEstado && coincideFechaInicio && coincideFechaFin;
+    });
+  
+    this.collectionSize = this.equiposFiltrados.length; 
+    this.page = 1; 
+  }
+
   get equiposPaginados(): Equipo[] { 
-    return this.equipos
+    return this.equiposFiltrados
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
   exportarExcel() {
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(document.getElementById('tablaEquipos'));
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.equiposFiltrados); 
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Equipos');
   
     XLSX.writeFile(wb, 'equipos.xlsx');
   }
-
 }

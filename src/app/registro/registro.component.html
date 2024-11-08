@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto"> 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menú</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="navegarAInicio()">Inicio</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="cambiarTema()">Tema Claro/Oscuro</a> 
+          </div>
+        </li>
+      </ul> 
+    </div>
+  </div>
+</nav>
+
+
+  <div class="container-fluid login-container">
+    <div class="row">
+      <div class="col-md-6 left-column">
+        <h1 class="text-center">Registro de usuarios</h1>
+        <p>Mantenimiento APX2000</p>
+      </div>
+
+      <div class="col-md-6 right-column">
+        <div class="container mt-1">
+          <div class="row justify-content-center">
+            <div class="col-md-9">
+              <div class="card" style="max-width: 25rem;">
+                <div class="card-header text-success">
+                  <h4 class="text-body-primary text-center"><strong>Ingresa los Datos</strong></h4>           
+                </div>
+                <div class="card-body">
+                  <form (ngSubmit)="registrarUsuario()" #registroForm="ngForm">
+                <div class="mb-2">
+                  <input type="text" placeholder="Grado" class="form-control " id="grado" name="grado" [(ngModel)]="usuario.grado" required>
+                </div>
+                <div class="mb-2">
+                  <input type="text" placeholder="Nombre completo" class="form-control " id="nombre" name="nombre" [(ngModel)]="usuario.nombre" required>
+                </div>
+                <div class="mb-2">
+                  <input type="text" placeholder="Matrícula (sin guión)" class="form-control" id="matricula" name="matricula" [(ngModel)]="usuario.matricula" required minlength="8" maxlength="8" pattern="^[A-Da-d]\d{7}$" #matriculaInput="ngModel">
+                  <div *ngIf="matriculaInput.invalid && (matriculaInput.dirty || matriculaInput.touched)" class="alert alert-danger">
+                    La matrícula debe comenzar con A, B, C o D, seguida de 7 números.
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <select class="form-select " id="rol" name="rol" [(ngModel)]="usuario.rol" required>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Recepción">Recepción</option>
+                    <option value="Mantenimiento">Mantenimiento</option>
+                    <option value="Almacenista">Almacenista</option>
+                  </select>
+                </div>
+ 
+                <div class="mb-2">
+                  <input type="text" placeholder="Ingrese código" class="form-control " id="codigo" name="codigo" [(ngModel)]="usuario.codigo" required>
+                </div>
+                  <button type="submit" class="btn btn-success">Registrarse</button>
+                <p></p>
+                <a><strong><span style="color: rgb(32, 32, 201);">El código solicitalo al Jefe de Almacenes</span></strong></a>
+                </form>
+                </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div> 

@@ -52,5 +52,12 @@ export class LoginComponent {
       this.errorCredenciales = 'Usuario o contraseña incorrectos';
       this.mostrarError = true;
     }
+    
   }
+
+  navegarARegistro(event: Event) {
+    event.preventDefault(); // Previene el comportamiento por defecto del enlace
+    this.router.navigate(['/registro']);
+  }
+  
 }

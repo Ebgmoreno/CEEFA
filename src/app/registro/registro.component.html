@@ -57,6 +57,18 @@
                 <div class="mb-2">
                   <input type="text" placeholder="Ingrese código" class="form-control " id="codigo" name="codigo" [(ngModel)]="usuario.codigo" required>
                 </div>
+                <div class="mb-2">
+                  <input type="password" placeholder="Contraseña" class="form-control" id="contrasena" name="contrasena" [(ngModel)]="usuario.contrasena" required pattern="^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" #contrasenaInput="ngModel">
+                  <div *ngIf="contrasenaInput.invalid && (contrasenaInput.dirty || contrasenaInput.touched)" class="alert alert-danger">
+                    La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <input type="password" placeholder="Confirmar contraseña" class="form-control" id="confirmarContrasena" name="confirmarContrasena" [(ngModel)]="confirmarContrasena" required>
+                  <div *ngIf="usuario.contrasena !== confirmarContrasena && confirmarContrasena" class="alert alert-danger">
+                    Las contraseñas no coinciden.
+                  </div>
+                </div>
                   <button type="submit" class="btn btn-success">Registrarse</button>
                 <p></p>
                 <a><strong><span style="color: rgb(32, 32, 201);">El código solicitalo al Jefe de Almacenes</span></strong></a>
@@ -69,3 +81,16 @@
       </div>
     </div> 
   </div> 
+
+  <ng-template #contenidoModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Código Incorrecto</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <p>El código ingresado es incorrecto. Por favor, inténtalo de nuevo.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cerrar</button>
+    </div>
+  </ng-template>

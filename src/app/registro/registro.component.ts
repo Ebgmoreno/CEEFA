@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface Usuario {
   grado: string;
@@ -10,6 +11,8 @@ interface Usuario {
   matricula: string;
   rol: string;
   codigo: string;
+  contrasena: string;
+  usuario: string; // Matrícula como nombre de usuario
 }
 
 @Component({
@@ -25,25 +28,34 @@ export class RegistroComponent {
     nombre: '',
     matricula: '',
     rol: 'Administrador',
-    codigo: ''
+    codigo: '',
+    contrasena: '',
+    usuario: '' // Inicialmente vacío, se asignará la matrícula después
   };
-  temaOscuro: boolean = false; 
+  temaOscuro: boolean = false;
+  confirmarContrasena: string = '';
 
-  constructor(private router: Router, private renderer: Renderer2) {}
+  @ViewChild('contenidoModal') contenidoModal!: TemplateRef<any>; 
+
+  constructor(private router: Router, private renderer: Renderer2, private modalService: NgbModal) { }
 
   registrarUsuario() {
     if (this.usuario.codigo !== '4R3K') {
-      // Mostrar una alerta indicando que el código es incorrecto
-      alert('Código incorrecto. Por favor, ingresa el código correcto.'); 
-      return; // Detener el proceso de registro
+      this.modalService.open(this.contenidoModal); 
+      return; 
     }
-    // 2. Guardar los datos del usuario (puedes usar localStorage o un servicio para enviar los datos a un servidor).
-    // Ejemplo de guardar en localStorage:
+
+    if (this.usuario.contrasena !== this.confirmarContrasena) {
+      alert('Las contraseñas no coinciden.');
+      return; 
+    }
+
+    // Guardar los datos del usuario en localStorage, incluyendo la matrícula como "usuario"
     const usuarios = this.obtenerUsuariosLocalStorage();
-    usuarios.push(this.usuario);
+    usuarios.push({ ...this.usuario, usuario: this.usuario.matricula }); 
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
-    // 3. Redirigir al usuario a la página de inicio de sesión.
+    // Redirigir al usuario a la página de inicio de sesión.
     this.router.navigate(['/']); 
   }
 

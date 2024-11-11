@@ -1,10 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms'; // Importa NgForm
 import { Equipo } from '../models/equipo.model';
 import { formatDate } from '@angular/common';
-
 
 @Component({
   selector: 'app-formulario-equipo',
@@ -31,7 +30,6 @@ export class FormularioEquipoComponent {
   temaOscuro: boolean = false; 
   fechaActual: string = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
 
-
   constructor(
     private cdRef: ChangeDetectorRef, 
     private router: Router, 
@@ -42,46 +40,49 @@ export class FormularioEquipoComponent {
     this.router.navigate(['/visualizacion']);
   }
 
-  onSubmit() {
-    const datosFormulario: Equipo = { // Tipado del objeto
-      nombreEntrega: this.nombreEntrega,
-      unidadEntrega: this.unidadEntrega,
-      serie: this.serie,
-      descripcion: this.descripcion,
-      fechaMinistracion: this.fechaMinistracion,
-      nombreRecibe: this.nombreRecibe,
-      fechaRecepcion: this.fechaRecepcion,
-      prioridad: this.prioridad,
-      estado: this.estado,
-      observaciones: this.observaciones,
-      reparadoPor: this.reparadoPor,
-      anotaciones: this.anotaciones,
-      datos: this.datos
-    };
-  
-    try {
-      // 1. Obtener los datos existentes del localStorage
-      let equipos: Equipo[] = [];
-      const datosGuardados = localStorage.getItem('equipos'); 
-      if (datosGuardados) {
-        equipos = JSON.parse(datosGuardados);
+  onSubmit(equipoForm: NgForm) { // Recibe el formulario como argumento
+    if (equipoForm.valid) { // Verifica si el formulario es válido
+      const datosFormulario: Equipo = { 
+        nombreEntrega: this.nombreEntrega,
+        unidadEntrega: this.unidadEntrega,
+        serie: this.serie,
+        descripcion: this.descripcion,
+        fechaMinistracion: this.fechaMinistracion,
+        nombreRecibe: this.nombreRecibe,
+        fechaRecepcion: this.fechaRecepcion,
+        prioridad: this.prioridad,
+        estado: this.estado,
+        observaciones: this.observaciones,
+        reparadoPor: this.reparadoPor,
+        anotaciones: this.anotaciones,
+        datos: this.datos
+      };
+
+      try {
+        // 1. Obtener los datos existentes del localStorage
+        let equipos: Equipo[] = [];
+        const datosGuardados = localStorage.getItem('equipos'); 
+        if (datosGuardados) {
+          equipos = JSON.parse(datosGuardados);
+        }
+
+        // 2. Agregar el nuevo equipo al array
+        equipos.push(datosFormulario);
+
+        // 3. Guardar el array actualizado en el localStorage
+        localStorage.setItem('equipos', JSON.stringify(equipos));
+
+        // Mostrar un mensaje de éxito (puedes usar una alerta o un snackbar)
+        console.log("Equipo guardado correctamente.");
+      } catch (error) {
+        console.error("Error al guardar el equipo:", error);
       }
 
-      // 2. Agregar el nuevo equipo al array
-      equipos.push(datosFormulario);
-
-      // 3. Guardar el array actualizado en el localStorage
-      localStorage.setItem('equipos', JSON.stringify(equipos));
-  
-      // Mostrar un mensaje de éxito (puedes usar una alerta o un snackbar)
-      console.log("Equipo guardado correctamente.");
-    } catch (error) {
-      // Manejar el error al guardar en localStorage
-      console.error("Error al guardar el equipo:", error);
-      // Mostrar un mensaje de error al usuario
+      this.limpiarFormulario();
+    } else {
+      // Mostrar un mensaje de error o realizar alguna acción si el formulario no es válido
+      console.log("Por favor, llena todos los campos obligatorios.");
     }
-  
-    this.limpiarFormulario();
   }
 
   cambiarTema() {
@@ -102,7 +103,7 @@ export class FormularioEquipoComponent {
     this.fechaMinistracion = '';
     this.nombreRecibe = '';
     this.fechaRecepcion = '';
-   this.cdRef.detectChanges();
+    this.cdRef.detectChanges();
   }
 
   cerrarSesion() {

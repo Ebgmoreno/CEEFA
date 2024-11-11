@@ -34,7 +34,15 @@
     <tbody>
       <tr>
         <td>{{ equipo?.serie }}</td>
-        <td>{{ equipo?.estado }}</td>
+        <td>
+          <span [ngClass]="{
+            'estado-almacen': equipo?.estado === 'Almacén',
+            'estado-mantenimiento': equipo?.estado === 'Mantenimiento',
+            'estado-reparado': equipo?.estado === 'Reparado'
+          }">
+            {{ equipo?.estado }}
+          </span>
+        </td>
         <td>{{ equipo?.observaciones }}</td>
         <td>{{ equipo?.reparadoPor }}</td>
         <td>{{ equipo?.anotaciones }}</td>

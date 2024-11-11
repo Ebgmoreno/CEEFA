@@ -64,7 +64,15 @@
           'prioridad-urgente': equipo.prioridad === 'Urgente', 
           'prioridad-extraurgente': equipo.prioridad === 'Extraurgente'}">
         {{ equipo.prioridad }}</td> 
-      <td>{{ equipo.estado }}</td> 
+        <td>
+          <span [ngClass]="{
+            'estado-almacen': equipo.estado === 'Almacén',
+            'estado-mantenimiento': equipo.estado === 'Mantenimiento',
+            'estado-reparado': equipo.estado === 'Reparado'
+          }">
+            {{ equipo.estado }}
+          </span>
+        </td>
       <td><button class="btn btn-info btn-sm" (click)="verDetalles(equipo.serie)">Ver</button></td>
     </tr>
   </tbody>

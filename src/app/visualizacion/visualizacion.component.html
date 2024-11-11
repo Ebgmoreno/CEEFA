@@ -12,7 +12,7 @@
           </div>
         </li>  
         <div class="d-flex">
-          <input type="text" class="form-control me-sm-3" placeholder="Buscar equipo..." [(ngModel)]="textoBusqueda">
+          <input type="text" class="form-control me-sm-2" placeholder="Buscar equipo..." [(ngModel)]="textoBusqueda">
           <button class="btn btn-success" (click)="buscarEquipo()">Buscar</button>
         </div>
       </ul> 
@@ -20,10 +20,7 @@
   </div>
 </nav>
 <p></p>
-
-
 <h3 class="text-center mt-3">Lista de equipos registrados</h3>
-
 <p></p>
 
 <div class="d-flex justify-content-center">
@@ -31,19 +28,20 @@
     <span class="badge bg-success">{{ collectionSize }}</span>
   </div>
 </div>
-
 <p></p>
-<table class="table table-hover table-bordered border-success text-center align-middle w-100" id="tablaEquipos">
+
+<table class="table table-hover text-center align-middle w-100" id="tablaEquipos">
   <thead> 
     <tr class="table-primary text-center align-middle">
-      <th scope="row">Nombre</th>
+      <th scope="row">Entregó</th>
       <th scope="row">Unidad</th>
+      <th scope="row">Prioridad</th> 
       <th scope="row">Serie</th>
       <th scope="row">Descripción</th>
       <th scope="row">Ministración</th>
-      <th scope="row">Nombre</th>
+      <th scope="row">Recibió</th>
       <th scope="row">Recepción</th>
-      <th scope="row">Prioridad</th> 
+      <th scope="row">Días</th>      
       <th scope="row">Estado</th> 
       <th scope="row">Detalles</th> 
     </tr>
@@ -52,29 +50,38 @@
     <tr *ngFor="let equipo of equiposPaginados; let i = index" [class.table-light]="i % 2 !== 0"> 
       <td>{{ equipo.nombreEntrega }}</td>
       <td>{{ equipo.unidadEntrega }}</td>
+      <td [ngClass]="{ 
+        'prioridad-ordinario': equipo.prioridad === 'Ordinario', 
+        'prioridad-urgente': equipo.prioridad === 'Urgente', 
+        'prioridad-extraurgente': equipo.prioridad === 'Extraurgente'}">
+      {{ equipo.prioridad }}</td> 
       <td>{{ equipo.serie }}</td>
       <td>{{ equipo.descripcion }}</td>
       <td>{{ equipo.fechaMinistracion }}</td>
       <td>{{ equipo.nombreRecibe }}</td>
       <td>{{ equipo.fechaRecepcion }}</td>
-      <td [ngClass]="{ 
-          'prioridad-ordinario': equipo.prioridad === 'Ordinario', 
-          'prioridad-urgente': equipo.prioridad === 'Urgente', 
-          'prioridad-extraurgente': equipo.prioridad === 'Extraurgente'}">
-        {{ equipo.prioridad }}</td> 
-        <td>
-          <span [ngClass]="{
-            'estado-almacen': equipo.estado === 'Almacén',
-            'estado-mantenimiento': equipo.estado === 'Mantenimiento',
-            'estado-reparado': equipo.estado === 'Reparado'
+      <td [ngClass]="{
+        'dias-verde': calcularDiasDiferencia(equipo.fechaRecepcion) <= 15,
+        'dias-naranja': calcularDiasDiferencia(equipo.fechaRecepcion) > 15 && calcularDiasDiferencia(equipo.fechaRecepcion) <= 30,
+        'dias-rojo': calcularDiasDiferencia(equipo.fechaRecepcion) > 30
+        }">
+        {{ calcularDiasDiferencia(equipo.fechaRecepcion) }}
+      </td>
+      <td>
+        <span [ngClass]="{
+          'estado-almacen': equipo.estado === 'Almacén',
+          'estado-mantenimiento': equipo.estado === 'Mantenimiento',
+          'estado-reparado': equipo.estado === 'Reparado',
+          'estado-baja': equipo.estado === 'Baja'
           }">
-            {{ equipo.estado }}
-          </span>
-        </td>
-      <td><button class="btn btn-info btn-sm" (click)="verDetalles(equipo.serie)">Ver</button></td>
+          {{ equipo.estado }}
+        </span>
+      </td> 
+      <td><button class="btn btn-info btn-sm" (click)="verDetalles(equipo.serie)">Ver</button></td>      
     </tr>
   </tbody>
 </table>
+
 <div class="d-flex justify-content-center">
   <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
   </ngb-pagination>
@@ -83,23 +90,22 @@
   <button class="btn btn-success mb-3" (click)="exportarExcel()">Exportar a Excel</button>
 </div>
 
-
 <div class="row justify-content-center"> 
   <div class="col-md-3"> 
-      <div class="card-body">
-<div class="container mt-1">
-  <div class="mb-2">
-    <label for="filtroFechaInicio" class="form-label">Fecha de inicio:</label>
-    <input type="date" class="form-control" id="filtroFechaInicio" [(ngModel)]="filtro.fechaInicio">
+    <div class="card-body">
+      <div class="container mt-1">
+        <div class="mb-2">
+          <label for="filtroFechaInicio" class="form-label">Fecha de inicio:</label>
+          <input type="date" class="form-control" id="filtroFechaInicio" [(ngModel)]="filtro.fechaInicio">
+        </div>
+        <div class="mb-2">
+          <label for="filtroFechaFin" class="form-label">Fecha de fin:</label>
+          <input type="date" class="form-control" id="filtroFechaFin" [(ngModel)]="filtro.fechaFin">
+        </div>
+        <div class="d-flex justify-content-center"> 
+          <button class="btn btn-success mb-3" (click)="aplicarFiltro()">Filtrar</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="mb-2">
-    <label for="filtroFechaFin" class="form-label">Fecha de fin:</label>
-    <input type="date" class="form-control" id="filtroFechaFin" [(ngModel)]="filtro.fechaFin">
-  </div>
-  <div class="d-flex justify-content-center"> 
-    <button class="btn btn-success mb-3" (click)="aplicarFiltro()">Filtrar</button>
-  </div>
-</div>
-</div>
-</div>
 </div>

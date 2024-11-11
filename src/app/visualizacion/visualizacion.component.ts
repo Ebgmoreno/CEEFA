@@ -18,7 +18,7 @@ export class VisualizacionComponent implements OnInit {
   equiposFiltrados: Equipo[] = []; 
 
   page = 1;
-  pageSize = 15;
+  pageSize = 10;
   collectionSize = 0;
 
   temaOscuro: boolean = false;
@@ -31,8 +31,8 @@ export class VisualizacionComponent implements OnInit {
     descripcion: string;
     fechaRecepcion: string;
     estado: string;
-    fechaInicio: string; // Nueva propiedad para la fecha de inicio
-    fechaFin: string; // Nueva propiedad para la fecha de fin
+    fechaInicio: string;
+    fechaFin: string;
   } = {
     nombreEntrega: '',
     unidadEntrega: '',
@@ -90,23 +90,22 @@ export class VisualizacionComponent implements OnInit {
   
     if (this.textoBusqueda) {
       const textoBusquedaLower = this.textoBusqueda.toLowerCase();
-      this.equiposFiltrados = this.equipos.filter(equipo => { // Actualiza equiposFiltrados
+      this.equiposFiltrados = this.equipos.filter(equipo => {
         return equipo.nombreEntrega.toLowerCase().includes(textoBusquedaLower) ||
-               equipo.unidadEntrega.toLowerCase().includes(textoBusquedaLower) ||
-               equipo.serie.toLowerCase().includes(textoBusquedaLower) ||
-               equipo.descripcion.toLowerCase().includes(textoBusquedaLower) ||
-               equipo.fechaMinistracion.toLowerCase().includes(textoBusquedaLower) ||
-               equipo.nombreRecibe.toLowerCase().includes(textoBusquedaLower) ||
-               equipo.fechaRecepcion.toLowerCase().includes(textoBusquedaLower) ||
-               equipo.prioridad.toLowerCase().includes(textoBusquedaLower) ||
-               equipo.estado.toLowerCase().includes(textoBusquedaLower); 
+                equipo.unidadEntrega.toLowerCase().includes(textoBusquedaLower) ||
+                equipo.serie.toLowerCase().includes(textoBusquedaLower) ||
+                equipo.descripcion.toLowerCase().includes(textoBusquedaLower) ||
+                equipo.fechaMinistracion.toLowerCase().includes(textoBusquedaLower) ||
+                equipo.nombreRecibe.toLowerCase().includes(textoBusquedaLower) ||
+                equipo.fechaRecepcion.toLowerCase().includes(textoBusquedaLower) ||
+                equipo.prioridad.toLowerCase().includes(textoBusquedaLower) ||
+                equipo.estado.toLowerCase().includes(textoBusquedaLower); 
       });
     } else {
-      // Si no hay texto de búsqueda, muestra todos los equipos
       this.equiposFiltrados = this.equipos; 
     }
   
-    this.collectionSize = this.equiposFiltrados.length; // Actualiza collectionSize
+    this.collectionSize = this.equiposFiltrados.length; 
   }
 
   cambiarTema() {
@@ -139,7 +138,7 @@ export class VisualizacionComponent implements OnInit {
 
       const coincideFechaInicio = !this.filtro.fechaInicio || equipo.fechaRecepcion >= this.filtro.fechaInicio;
       const coincideFechaFin = !this.filtro.fechaFin || equipo.fechaRecepcion <= this.filtro.fechaFin;
-  
+    
       return coincideNombre && coincideUnidad && coincidePrioridad && coincideDescripcion && coincideFechaRecepcion && coincideEstado && coincideFechaInicio && coincideFechaFin;
     });
   
@@ -158,5 +157,13 @@ export class VisualizacionComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Equipos');
   
     XLSX.writeFile(wb, 'equipos.xlsx');
+  }
+
+  calcularDiasDiferencia(fechaRecepcion: string): number {
+    const fechaInicio = new Date(fechaRecepcion);
+    const fechaActual = new Date();
+    const diferenciaEnMilisegundos = Math.abs(fechaActual.getTime() - fechaInicio.getTime());
+    const diferenciaEnDias = Math.ceil(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24));
+    return diferenciaEnDias;
   }
 }

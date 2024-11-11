@@ -14,7 +14,20 @@
 }
 
   td {
-    font-size: 12.5px;
+    font-size: 11px;
+  }
+
+  th {
+    font-size: 11px;
+  }
+
+  .dias-verde { color: green; 
+  }
+  
+  .dias-naranja { color: orange; 
+  }
+  
+  .dias-rojo { color: red; 
   }
 
 

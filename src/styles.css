@@ -1,3 +1,27 @@
-.estado-almacen { color: red; font-weight: bold;  }
-.estado-mantenimiento { color: rgb(255, 145, 0); font-weight: bold;  }
-.estado-reparado { color: green; font-weight: bold;  }
+.estado-almacen { color: rgb(24, 5, 133); 
+    font-weight: bold;
+}
+
+.estado-mantenimiento { color: rgb(255, 145, 0); 
+    font-weight: bold;  
+}
+
+.estado-reparado { color: #008000; font-weight: 
+    bold;  
+}
+
+.estado-baja { color: #ff0606; font-weight: 
+    bold;  
+}
+
+.dias-verde {color: #008000; 
+    font-weight: bold;  
+}
+
+.dias-naranja { color: orange; 
+    font-weight: bold;  
+}
+
+.dias-rojo { color: red; 
+    font-weight: bold;  
+}

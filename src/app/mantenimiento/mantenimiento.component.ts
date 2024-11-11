@@ -26,7 +26,8 @@ export class MantenimientoComponent implements OnInit {
     observaciones: '',
     reparadoPor: '',
     anotaciones: '',
-    datos: ''
+    datos: '',
+  
   };
 
   constructor(

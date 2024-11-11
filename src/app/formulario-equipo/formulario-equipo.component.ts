@@ -22,7 +22,7 @@ export class FormularioEquipoComponent {
   nombreRecibe: string = '';
   fechaRecepcion: string = '';
   prioridad: string = 'Ordinario'; 
-  estado: string = '';
+  estado: string = 'Almacén'; // Inicializa la propiedad estado con 'Almacén'
   observaciones: string = '';
   reparadoPor: string = '';
   anotaciones: string = '';

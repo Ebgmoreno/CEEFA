@@ -1,44 +1,45 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
+  <div class="container-fluid">  
+    <a class="navbar-brand">Equipos registrados</a>
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav"> 
+      <ul class="navbar-nav me-auto"> 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menú</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="navegarAFormulario()">Registro de Equipo</a>
-            <a class="dropdown-item" (click)="cambiarTema()">Tema Claro/Oscuro</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="cerrarSesion()">Cerrar Sesión</a>
-          </div>
-        </li>  
-        <div class="d-flex">
-          <input type="text" class="form-control me-sm-2" placeholder="Buscar equipo..." [(ngModel)]="textoBusqueda">
-          <button class="btn btn-success" (click)="buscarEquipo()">Buscar</button>
-        </div>
-      </ul> 
-    </div>
-  </div>
-</nav>
-<p></p>
-<h3 class="text-center mt-3">Lista de equipos registrados</h3>
-<p></p>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="navegarAFormulario()">Registro de Equipo</a>
 
-<div class="d-flex justify-content-center">
-  <div class="d-flex">
-    <span class="badge bg-success">{{ collectionSize }}</span>
+                <a class="dropdown-item" (click)="exportarExcel()">Exportar</a>
+
+              <a class="dropdown-item" (click)="cambiarTema()">Tema Claro/Oscuro</a>
+
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="cerrarSesion()">Cerrar Sesión</a>
+            </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#"></a></li>
+
+        <li class="nav-item"><a class="nav-link"></a> </li>
+          <div class="d-flex">
+            <input type="text" class="form-control me-sm-2" placeholder="Buscar equipo..." [(ngModel)]="textoBusqueda">
+            <button class="btn btn-sm btn-outline-info" (click)="buscarEquipo()">Buscar</button>
+          </div>
+      </ul>
+    </div>              
   </div>
+
+</nav>
+<div class="d-flex justify-content-center">
+  <span class="btn btn-sm btn-outline-info">{{ collectionSize }}</span>
 </div>
-<p></p>
 
 <table class="table table-hover text-center align-middle w-100" id="tablaEquipos">
   <thead> 
-    <tr class="table-primary text-center align-middle">
+    <tr class="table-primary  text-center align-middle">
       <th scope="row">Entregó</th>
       <th scope="row">Unidad</th>
       <th scope="row">Prioridad</th> 
       <th scope="row">Serie</th>
       <th scope="row">Descripción</th>
-      <th scope="row">Ministración</th>
       <th scope="row">Recibió</th>
       <th scope="row">Recepción</th>
       <th scope="row">Días</th>      
@@ -46,6 +47,7 @@
       <th scope="row">Detalles</th> 
     </tr>
   </thead>
+  
   <tbody>
     <tr *ngFor="let equipo of equiposPaginados; let i = index" [class.table-light]="i % 2 !== 0"> 
       <td>{{ equipo.nombreEntrega }}</td>
@@ -57,7 +59,6 @@
       {{ equipo.prioridad }}</td> 
       <td>{{ equipo.serie }}</td>
       <td>{{ equipo.descripcion }}</td>
-      <td>{{ equipo.fechaMinistracion }}</td>
       <td>{{ equipo.nombreRecibe }}</td>
       <td>{{ equipo.fechaRecepcion }}</td>
       <td [ngClass]="{
@@ -77,18 +78,15 @@
           {{ equipo.estado }}
         </span>
       </td> 
-      <td><button class="btn btn-info btn-sm" (click)="verDetalles(equipo.serie)">Ver</button></td>      
+      <td><button class="btn btn-link boton-pequenio" (click)="verDetalles(equipo.serie)">Ver</button></td>
     </tr>
   </tbody>
 </table>
 
-<div class="d-flex justify-content-center">
-  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-  </ngb-pagination>
+<div class="d-flex justify-content-end">
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
 </div> 
-<div class="d-flex justify-content-end"> 
-  <button class="btn btn-success mb-3" (click)="exportarExcel()">Exportar a Excel</button>
-</div>
+
 
 <div class="row justify-content-center"> 
   <div class="col-md-3"> 

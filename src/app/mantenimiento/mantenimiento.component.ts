@@ -18,7 +18,6 @@ export class MantenimientoComponent implements OnInit {
     unidadEntrega: '',
     serie: '',
     descripcion: '',
-    fechaMinistracion: '',
     nombreRecibe: '',
     fechaRecepcion: '',
     prioridad: '',

@@ -18,7 +18,6 @@ export class FormularioEquipoComponent {
   unidadEntrega: string = '';
   serie: string = '';
   descripcion: string = '';
-  fechaMinistracion: string = '';
   nombreRecibe: string = '';
   fechaRecepcion: string = '';
   prioridad: string = 'Ordinario'; 
@@ -47,7 +46,6 @@ export class FormularioEquipoComponent {
         unidadEntrega: this.unidadEntrega,
         serie: this.serie,
         descripcion: this.descripcion,
-        fechaMinistracion: this.fechaMinistracion,
         nombreRecibe: this.nombreRecibe,
         fechaRecepcion: this.fechaRecepcion,
         prioridad: this.prioridad,
@@ -100,7 +98,6 @@ export class FormularioEquipoComponent {
     this.unidadEntrega = '';
     this.serie = '';
     this.descripcion = '';
-    this.fechaMinistracion = '';
     this.nombreRecibe = '';
     this.fechaRecepcion = '';
     this.cdRef.detectChanges();

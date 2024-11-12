@@ -26,6 +26,10 @@
                     <div class="mb-2">
                       <input type="password" placeholder="Contraseña" class="form-control border-info" id="contrasena" name="contrasena" required [(ngModel)]="contrasena">
                     </div>
+                    <div class="mb-2">
+                    <input type="checkbox" id="recordarme" name="recordarme" [(ngModel)]="recordarme">
+                    <label for="recordarme" style="margin-left: 5px;">Recuérdame</label> 
+                  </div>
                     <div class="alert alert-dismissible alert-primary" *ngIf="mostrarError">
                       <span *ngIf="errorUsuario">{{errorUsuario}}</span>
                       <span *ngIf="errorContrasena">{{errorContrasena}}</span>

@@ -95,7 +95,6 @@ export class VisualizacionComponent implements OnInit {
                 equipo.unidadEntrega.toLowerCase().includes(textoBusquedaLower) ||
                 equipo.serie.toLowerCase().includes(textoBusquedaLower) ||
                 equipo.descripcion.toLowerCase().includes(textoBusquedaLower) ||
-                equipo.fechaMinistracion.toLowerCase().includes(textoBusquedaLower) ||
                 equipo.nombreRecibe.toLowerCase().includes(textoBusquedaLower) ||
                 equipo.fechaRecepcion.toLowerCase().includes(textoBusquedaLower) ||
                 equipo.prioridad.toLowerCase().includes(textoBusquedaLower) ||

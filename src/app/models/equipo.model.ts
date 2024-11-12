@@ -3,7 +3,6 @@ export interface Equipo {
     unidadEntrega: string;
     serie: string;
     descripcion: string;
-    fechaMinistracion: string;
     nombreRecibe: string;
     fechaRecepcion: string;
     prioridad: string;

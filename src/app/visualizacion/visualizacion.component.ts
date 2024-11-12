@@ -18,7 +18,7 @@ export class VisualizacionComponent implements OnInit {
   equiposFiltrados: Equipo[] = []; 
 
   page = 1;
-  pageSize = 10;
+  pageSize = 9;
   collectionSize = 0;
 
   temaOscuro: boolean = false;

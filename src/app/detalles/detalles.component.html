@@ -13,27 +13,30 @@
           </div>
         </li>
       </ul> 
+      <div class="mx-auto"> 
+        <a class="navbar-brand">Detalles de Equipo </a>
+      </div>
     </div>
   </div>
 </nav>
 
-
 <div class="container mt-3">
-  <h3> <p class="text-center">Detalles de Equipo</p></h3>
   <table class="table table-hover table-bordered text-center align-middle"> 
     <thead>
       <tr class="table-primary text-center align-middle">
         <th scope="row">Serie</th>
+        <th scope="row">Descripción</th> 
         <th scope="row">Estado</th>
         <th scope="row">Observaciones</th>
         <th scope="row">Reparado por</th>
         <th scope="row">Anotaciones</th>
-        <th scope="row">Datos</th>
+        <th scope="row">Datos</th> 
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>{{ equipo?.serie }}</td>
+        <td>{{ equipo?.descripcion }}</td> 
         <td>
           <span [ngClass]="{
             'estado-almacen': equipo?.estado === 'Almacén',

@@ -1,43 +1,56 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarColor01"> 
-      <button class="dropdown-item text-white float-end" (click)="cambiarTema()">Tema Claro/Oscuro</button>
-    </div>
-  </div>
-</nav>
-
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card">
-
-        
-        <div class="card-header">
-          <h3>Iniciar Sesión</h3>
-          <h4>  <small class="text-body-secondary">Mantenimiento APX-2000</small></h4>          
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><strong>Especialidad en Logísitica Militar</strong></a>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav"> 
+        </ul> 
+     </div>
+   </div>
+  </nav>
+  <div class="container-fluid login-container">
+    <div class="row">
+      <div class="col-md-6 left-column">
+        <div class="container mt-1">
+          <div class="row justify-content-center">
+            <div class="col-md-7">
+              <div class="card" style="max-width: 25rem;">
+                <div class="card-header text-info">
+                  <h3 class="text-center"><strong>Iniciar Sesión</strong></h3>
+                  <h4 class="text-body-secondary text-center"><small>Mantenimiento APX-2000</small></h4>           
+                </div>
+                <div class="card-body">
+                  <form #loginForm="ngForm">
+                    <div class="mb-2">
+                      <input type="text" placeholder="Usuario" class="form-control border-info" id="usuario" name="usuario" required [(ngModel)]="usuario">
+                    </div>
+                    <div class="mb-2">
+                      <input type="password" placeholder="Contraseña" class="form-control border-info" id="contrasena" name="contrasena" required [(ngModel)]="contrasena">
+                    </div>
+                    <div class="mb-2">
+                    <input type="checkbox" id="recordarme" name="recordarme" [(ngModel)]="recordarme">
+                    <label for="recordarme" style="margin-left: 5px;">Recuérdame</label> 
+                  </div>
+                    <div class="alert alert-dismissible alert-primary" *ngIf="mostrarError">
+                      <span *ngIf="errorUsuario">{{errorUsuario}}</span>
+                      <span *ngIf="errorContrasena">{{errorContrasena}}</span>
+                      <span *ngIf="errorCredenciales">{{errorCredenciales}}</span>
+                    </div>         
+                    <button type="button" class="btn btn-info" (click)="onSubmit(loginForm)">Iniciar Sesión</button>
+                    <p></p>
+                    <a href="#">¿Has olvidado la contraseña?</a>
+                    <hr>
+                    <p class="text-black">¿No tienes una cuenta? <a href="#" (click)="navegarARegistro($event)">Regístrate</a>
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-          <form #loginForm="ngForm">
-            <div class="mb-3">
-              <p class="text-info"><strong>Usuario:</strong></p>
-              <input type="text" class="form-control" id="usuario" name="usuario" required [(ngModel)]="usuario">
-            </div>
-            <div class="mb-3">
-              <p class="text-info"><strong>Contraseña:</strong></p>
-              <input type="password" class="form-control" id="contrasena" name="contrasena" required [(ngModel)]="contrasena">
-            </div>
-
-            
-            <div class="alert alert-dismissible alert-primary" *ngIf="mostrarError">
-              <span *ngIf="errorUsuario">{{errorUsuario}}</span>
-              <span *ngIf="errorContrasena">{{errorContrasena}}</span>
-              <span *ngIf="errorCredenciales">{{errorCredenciales}}</span>
-            </div>
-           
-            <button type="button" class="btn btn-info" (click)="onSubmit(loginForm)">Iniciar Sesión</button>
-          </form>
-        </div>
+      </div>    
+      <div class="col-md-6 right-column">
+        <h1>Centro de Estudios del Ejército y Fuerza Aérea</h1>
+        <p>Escuela Militar de Logística</p>
       </div>
     </div>
   </div>
-</div>

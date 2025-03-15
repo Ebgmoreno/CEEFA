@@ -1,3 +1,11 @@
-.float-end {
-    margin-right: 10px; 
-  }
+.login-container {
+  background-color: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.right-column {
+  text-align: center; /* Centra el texto en la columna derecha */
+  /* Puedes agregar estilos adicionales para la columna derecha si es necesario */
+}

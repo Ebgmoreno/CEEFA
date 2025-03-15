@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav"> 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menú</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="navegarAFormulario()">Formulario</a>
+            <a class="dropdown-item" (click)="navegarAVisualizacion()">Equipos Registrados</a>
+            <a class="dropdown-item" (click)="cambiarTema()">Tema Claro/Oscuro</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="cerrarSesion()">Cerrar Sesión</a>
+          </div>
+        </li>
+      </ul> 
+      <div class="mx-auto"> 
+        <a class="navbar-brand">Detalles de Equipo </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-3">
+  <table class="table table-hover table-bordered text-center align-middle"> 
+    <thead>
+      <tr class="table-primary text-center align-middle">
+        <th scope="row">Serie</th>
+        <th scope="row">Descripción</th> 
+        <th scope="row">Estado</th>
+        <th scope="row">Observaciones</th>
+        <th scope="row">Reparado por</th>
+        <th scope="row">Anotaciones</th>
+        <th scope="row">Datos</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ equipo?.serie }}</td>
+        <td>{{ equipo?.descripcion }}</td> 
+        <td>
+          <span [ngClass]="{
+            'estado-almacen': equipo?.estado === 'Almacén',
+            'estado-mantenimiento': equipo?.estado === 'Mantenimiento',
+            'estado-reparado': equipo?.estado === 'Reparado',
+            'estado-baja': equipo?.estado === 'Baja'
+          }">
+            {{ equipo?.estado }}
+          </span>
+        </td>
+        <td>{{ equipo?.observaciones }}</td>
+        <td>{{ equipo?.reparadoPor }}</td>
+        <td>{{ equipo?.anotaciones }}</td>
+        <td><button class="btn btn-info btn-sm" (click)="editarEquipo(equipo?.serie)">Editar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

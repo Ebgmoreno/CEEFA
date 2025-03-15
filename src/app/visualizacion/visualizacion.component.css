@@ -1,0 +1,37 @@
+.prioridad-ordinario {
+  color: green; 
+  font-weight: bold; 
+}
+
+.prioridad-urgente {
+  color: orange; 
+  font-weight: bold; 
+}
+
+.prioridad-extraurgente {
+  color: red; 
+  font-weight: bold; 
+}
+
+  td {
+    font-size: 10.5px;
+  }
+
+  th {
+    font-size: 13px;
+  
+  }
+
+  .dias-verde { color: green; 
+  }
+  
+  .dias-naranja { color: orange; 
+  }
+  
+  .dias-rojo { color: red; 
+  }
+
+  .boton-pequenio {
+    font-size: 11px;
+    padding: 2px 5px;
+  }

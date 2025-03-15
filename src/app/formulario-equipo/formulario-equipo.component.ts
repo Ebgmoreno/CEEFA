@@ -1,8 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, NgForm } from '@angular/forms'; // Importa NgForm
+import { Equipo } from '../models/equipo.model';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-formulario-equipo',
@@ -17,10 +18,16 @@ export class FormularioEquipoComponent {
   unidadEntrega: string = '';
   serie: string = '';
   descripcion: string = '';
-  fechaMinistracion: string = '';
   nombreRecibe: string = '';
   fechaRecepcion: string = '';
-  temaOscuro: boolean = false; // Variable para controlar el tema
+  prioridad: string = 'Ordinario'; 
+  estado: string = 'Almacén'; // Inicializa la propiedad estado con 'Almacén'
+  observaciones: string = '';
+  reparadoPor: string = '';
+  anotaciones: string = '';
+  datos: string = '';
+  temaOscuro: boolean = false; 
+  fechaActual: string = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
 
   constructor(
     private cdRef: ChangeDetectorRef, 
@@ -32,27 +39,48 @@ export class FormularioEquipoComponent {
     this.router.navigate(['/visualizacion']);
   }
 
-  onSubmit() {
-    // 1. Obtén los datos del formulario
-    const datosFormulario = {
-      nombreEntrega: this.nombreEntrega,
-      unidadEntrega: this.unidadEntrega,
-      serie: this.serie,
-      descripcion: this.descripcion,
-      fechaMinistracion: this.fechaMinistracion,
-      nombreRecibe: this.nombreRecibe,
-      fechaRecepcion: this.fechaRecepcion,
-      // ... (obtén los valores de los demás campos, incluyendo la prioridad)
-    };
-  
-    // 2. Guarda los datos en localStorage
-    localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario));
-  
-    // 3. (Opcional) Limpia el formulario
-    this.limpiarFormulario();
-  
-    // 4. (Opcional) Muestra un mensaje de éxito
-    // ...
+  onSubmit(equipoForm: NgForm) { // Recibe el formulario como argumento
+    if (equipoForm.valid) { // Verifica si el formulario es válido
+      const datosFormulario: Equipo = { 
+        nombreEntrega: this.nombreEntrega,
+        unidadEntrega: this.unidadEntrega,
+        serie: this.serie,
+        descripcion: this.descripcion,
+        nombreRecibe: this.nombreRecibe,
+        fechaRecepcion: this.fechaRecepcion,
+        prioridad: this.prioridad,
+        estado: this.estado,
+        observaciones: this.observaciones,
+        reparadoPor: this.reparadoPor,
+        anotaciones: this.anotaciones,
+        datos: this.datos
+      };
+
+      try {
+        // 1. Obtener los datos existentes del localStorage
+        let equipos: Equipo[] = [];
+        const datosGuardados = localStorage.getItem('equipos'); 
+        if (datosGuardados) {
+          equipos = JSON.parse(datosGuardados);
+        }
+
+        // 2. Agregar el nuevo equipo al array
+        equipos.push(datosFormulario);
+
+        // 3. Guardar el array actualizado en el localStorage
+        localStorage.setItem('equipos', JSON.stringify(equipos));
+
+        // Mostrar un mensaje de éxito (puedes usar una alerta o un snackbar)
+        console.log("Equipo guardado correctamente.");
+      } catch (error) {
+        console.error("Error al guardar el equipo:", error);
+      }
+
+      this.limpiarFormulario();
+    } else {
+      // Mostrar un mensaje de error o realizar alguna acción si el formulario no es válido
+      console.log("Por favor, llena todos los campos obligatorios.");
+    }
   }
 
   cambiarTema() {
@@ -70,22 +98,12 @@ export class FormularioEquipoComponent {
     this.unidadEntrega = '';
     this.serie = '';
     this.descripcion = '';
-    this.fechaMinistracion = '';
     this.nombreRecibe = '';
     this.fechaRecepcion = '';
-
     this.cdRef.detectChanges();
   }
 
   cerrarSesion() {
-    // 1. Eliminar la información de la sesión (si la hay)
-    // ... (implementa la lógica para eliminar la sesión) ...
-
-    // 2. Redirigir al usuario a la página de login
     this.router.navigate(['/']); 
   }
-
-
 }
-
-

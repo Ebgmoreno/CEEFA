@@ -15,38 +15,54 @@ export class LoginComponent {
   errorUsuario: string = '';
   errorContrasena: string = '';
   errorCredenciales: string = '';
-  usuario: string = ''; // <-- Añade esta línea
-  contrasena: string = ''; // <-- Añade esta línea
-  temaOscuro: boolean = true; // Para controlar el tema
+  usuario: string = '';
+  contrasena: string = '';
+  temaOscuro: boolean = true;
+  recordarme: boolean = false; // Variable para la casilla "Recuérdame"
 
+  constructor(private router: Router, private renderer: Renderer2) { }
 
-  constructor(private router: Router, private renderer: Renderer2) { } // Inyecta Renderer2
+  navegarARegistro(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['/registro']);
+  }
+
+  ngOnInit() {
+    // Cargar usuario y contraseña si están guardados en localStorage
+    this.usuario = localStorage.getItem('usuario') || '';
+    this.contrasena = localStorage.getItem('contrasena') || '';
+  }
 
   onSubmit(form: any) {
     console.log(form.value);
-    console.log("se ha enviado el formulario"); // <-- Añade esta línea
+    console.log("se ha enviado el formulario");
     this.mostrarError = false;
     this.errorUsuario = '';
     this.errorContrasena = '';
     this.errorCredenciales = '';
 
-    const usuario = form.value.usuario;
+    const usuario = form.value.usuario; // Matrícula ingresada
     const contrasena = form.value.contrasena;
 
-    if (!usuario) {
-      this.errorUsuario = 'Por favor ingrese su usuario';
-      this.mostrarError = true;
-      return;
-    }
+    const usuarios = this.obtenerUsuariosLocalStorage();
+    const usuarioEncontrado = usuarios.find(u => u.usuario === usuario && u.contrasena === contrasena);
 
-    if (!contrasena) {
-      this.errorContrasena = 'Por favor ingrese su contraseña';
-      this.mostrarError = true;
-      return;
-    }
-
-    if (usuario === 'D1992428' && contrasena === 'Moreno21') {
+    if (usuarioEncontrado) {
       console.log('Inicio de sesión exitoso');
+
+      // Guardar la información del usuario actual en localStorage
+      const usuarioActual = {
+        nombre: usuarioEncontrado.nombre,
+        fecha: new Date()
+      };
+      localStorage.setItem('ultimoUsuario', JSON.stringify(usuarioActual));
+
+      // Guardar usuario y contraseña si "recordarme" está marcado
+      if (this.recordarme) {
+        localStorage.setItem('usuario', this.usuario);
+        localStorage.setItem('contrasena', this.contrasena);
+      }
+
       this.router.navigate(['/formulario']);
     } else {
       this.errorCredenciales = 'Usuario o contraseña incorrectos';
@@ -54,13 +70,12 @@ export class LoginComponent {
     }
   }
 
-  cambiarTema() {
-    this.temaOscuro = !this.temaOscuro; 
-
-    if (this.temaOscuro) {
-      this.renderer.addClass(document.body, 'dark-mode'); 
+  private obtenerUsuariosLocalStorage(): any[] {
+    const usuariosGuardados = localStorage.getItem('usuarios');
+    if (usuariosGuardados) {
+      return JSON.parse(usuariosGuardados);
     } else {
-      this.renderer.removeClass(document.body, 'dark-mode');
+      return [];
     }
   }
 }
